@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+/*import { createFileRoute } from "@tanstack/react-router";
 import { AppShell } from "@/components/ajbuy/AppShell";
 import { transactions, user } from "@/lib/mock-data";
 import { useState } from "react";
@@ -92,4 +92,4 @@ function Action({ icon, label, primary, onClick }: { icon: React.ReactNode; labe
       {icon}{label}
     </button>
   );
-}
+}*/

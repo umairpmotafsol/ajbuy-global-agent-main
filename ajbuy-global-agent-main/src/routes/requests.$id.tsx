@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+/*import { createFileRoute, Link } from "@tanstack/react-router";
 import { AppShell } from "@/components/ajbuy/AppShell";
 import { ProductPlaceholder } from "@/components/ajbuy/ProductPlaceholder";
 import { ChevronLeft, Check, X, RefreshCw, Wallet, CreditCard, Clock } from "lucide-react";
@@ -80,3 +80,4 @@ function QuoteDetail() {
     </AppShell>
   );
 }
+*/

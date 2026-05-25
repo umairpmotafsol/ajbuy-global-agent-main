@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+/*import { createFileRoute } from "@tanstack/react-router";
 import { AppShell } from "@/components/ajbuy/AppShell";
 import { tickets } from "@/lib/mock-data";
 import { useState } from "react";
@@ -49,7 +49,7 @@ function Support() {
         )}
       </div>
 
-      {/* Floating chat */}
+      {/* Floating chat *}
       <button onClick={() => setChatOpen(true)} className="fixed bottom-24 lg:bottom-8 right-4 h-14 w-14 rounded-full bg-primary text-primary-foreground shadow-card-hover inline-flex items-center justify-center z-30 hover:bg-primary-deep">
         <MessageCircle className="h-6 w-6" />
       </button>
@@ -83,4 +83,4 @@ function Msg({ children, agent }: { children: React.ReactNode; agent?: boolean }
       <div className={`max-w-[80%] rounded-2xl px-3 py-2 text-sm ${agent ? "bg-muted" : "bg-primary text-primary-foreground"}`}>{children}</div>
     </div>
   );
-}
+}*/

@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+/*import { createFileRoute, Link } from "@tanstack/react-router";
 import { AppShell } from "@/components/ajbuy/AppShell";
 import { shippingMethods } from "@/lib/mock-data";
 import { useState } from "react";
@@ -64,7 +64,7 @@ function Shipping() {
             </div>
           </div>
 
-          {/* Summary */}
+          {/* Summary *}
           <aside className="lg:sticky lg:top-20 lg:self-start rounded-2xl border bg-card p-5 shadow-card">
             <h3 className="font-display text-lg">Order summary</h3>
             <div className="mt-4 space-y-2 text-sm">
@@ -101,4 +101,4 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 }
 function Row({ label, value }: { label: string; value: string }) {
   return <div className="flex justify-between"><span className="text-muted-foreground">{label}</span><span className="font-medium">{value}</span></div>;
-}
+}*/

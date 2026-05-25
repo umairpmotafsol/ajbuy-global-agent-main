@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+/*import { createFileRoute, Link } from "@tanstack/react-router";
 import { AdminShell } from "@/components/ajbuy/AdminShell";
 import { adminKpis, adminRecentOrders, adminRevenueSeries } from "@/lib/mock-data";
 import { StatusBadge } from "@/components/ajbuy/StatusBadge";
@@ -79,4 +79,4 @@ function Kpi({ icon, label, value, delta, negative }: { icon: React.ReactNode; l
       <div className="font-display text-2xl mt-1">{value}</div>
     </div>
   );
-}
+}*/

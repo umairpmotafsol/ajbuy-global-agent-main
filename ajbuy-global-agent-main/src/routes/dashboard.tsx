@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+/*import { createFileRoute, Link } from "@tanstack/react-router";
 import { AppShell } from "@/components/ajbuy/AppShell";
 import { StatusBadge } from "@/components/ajbuy/StatusBadge";
 import { ProductPlaceholder } from "@/components/ajbuy/ProductPlaceholder";
@@ -20,7 +20,7 @@ function Dashboard() {
   return (
     <AppShell>
       <div className="p-4 md:p-6 space-y-6 max-w-5xl">
-        {/* Welcome + wallet */}
+        {/* Welcome + wallet *}
         <div className="flex flex-col md:flex-row md:items-end gap-4 md:justify-between">
           <div>
             <h1 className="font-display text-2xl md:text-3xl">Welcome back, Ahmed 👋</h1>
@@ -36,7 +36,7 @@ function Dashboard() {
           </Link>
         </div>
 
-        {/* Quick actions */}
+        {/* Quick actions *}
         <div className="flex gap-3 overflow-x-auto scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-6">
           {quickActions.map((a) => {
             const Icon = a.icon;
@@ -49,7 +49,7 @@ function Dashboard() {
           })}
         </div>
 
-        {/* Active orders */}
+        {/* Active orders *}
         <section>
           <div className="flex items-center justify-between mb-3">
             <h2 className="font-display text-xl">Active Orders</h2>
@@ -81,7 +81,7 @@ function Dashboard() {
           </div>
         </section>
 
-        {/* Recent requests */}
+        {/* Recent requests *}
         <section>
           <div className="flex items-center justify-between mb-3">
             <h2 className="font-display text-xl">Recent Purchase Requests</h2>
@@ -104,7 +104,7 @@ function Dashboard() {
           </div>
         </section>
 
-        {/* Promo banner */}
+        {/* Promo banner *}
         <Link to="/affiliate" className="block rounded-2xl bg-gradient-to-r from-primary to-primary-deep text-primary-foreground p-5 md:p-6 shadow-card-hover overflow-hidden relative">
           <div className="flex items-center gap-4">
             <Gift className="h-8 w-8 shrink-0" />
@@ -118,4 +118,4 @@ function Dashboard() {
       </div>
     </AppShell>
   );
-}
+}*/

@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+/*import { createFileRoute, Link } from "@tanstack/react-router";
 import { AdminShell } from "@/components/ajbuy/AdminShell";
 import { ProductPlaceholder } from "@/components/ajbuy/ProductPlaceholder";
 import { StatusBadge } from "@/components/ajbuy/StatusBadge";
@@ -47,7 +47,7 @@ function AdminOrderDetail() {
 
       <div className="grid lg:grid-cols-3 gap-4 mt-6">
         <div className="lg:col-span-2 space-y-4">
-          {/* Items */}
+          {/* Items *}
           <div className="rounded-2xl border bg-card shadow-card overflow-hidden">
             <div className="p-5 border-b flex items-center justify-between">
               <h2 className="font-display text-lg">Items</h2>
@@ -76,7 +76,7 @@ function AdminOrderDetail() {
             </div>
           </div>
 
-          {/* Shipment */}
+          {/* Shipment *}
           <div className="rounded-2xl border bg-card shadow-card p-5">
             <h2 className="font-display text-lg flex items-center gap-2"><Truck className="h-5 w-5 text-primary" /> Shipment</h2>
             <div className="mt-3 grid md:grid-cols-2 gap-3 text-sm">
@@ -89,7 +89,7 @@ function AdminOrderDetail() {
             </div>
           </div>
 
-          {/* Timeline */}
+          {/* Timeline *}
           <div className="rounded-2xl border bg-card shadow-card p-5">
             <h2 className="font-display text-lg">Activity</h2>
             <ul className="mt-4 space-y-3">
@@ -106,7 +106,7 @@ function AdminOrderDetail() {
           </div>
         </div>
 
-        {/* Side */}
+        {/* Side *}
         <aside className="space-y-4">
           <div className="rounded-2xl border bg-card shadow-card p-5">
             <h3 className="font-display text-lg">Customer</h3>
@@ -168,4 +168,4 @@ function Field({ label, value, mono, copy }: { label: string; value: string; mon
       </div>
     </div>
   );
-}
+}*/

@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+/*import { createFileRoute } from "@tanstack/react-router";
 import { AppShell } from "@/components/ajbuy/AppShell";
 import { referralEarnings, referralStats } from "@/lib/mock-data";
 import { Copy, Share2, MessageCircle, Send } from "lucide-react";
@@ -69,4 +69,4 @@ function Stat({ label, value, highlight }: { label: string; value: React.ReactNo
       <div className={`font-display text-2xl mt-1 ${highlight ? "text-primary" : ""}`}>{value}</div>
     </div>
   );
-}
+}*/

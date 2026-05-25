@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+/*import { createFileRoute, Link } from "@tanstack/react-router";
 import { AppShell } from "@/components/ajbuy/AppShell";
 import { ChevronLeft, Camera, Play, AlertTriangle, Check, RefreshCw, ArrowLeftRight } from "lucide-react";
 
@@ -54,3 +54,4 @@ function QCReview() {
     </AppShell>
   );
 }
+*/

@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+/*import { createFileRoute, Link } from "@tanstack/react-router";
 import { AdminShell } from "@/components/ajbuy/AdminShell";
 import { StatusBadge } from "@/components/ajbuy/StatusBadge";
 import { adminRecentOrders } from "@/lib/mock-data";
@@ -82,3 +82,4 @@ function AdminOrders() {
     </AdminShell>
   );
 }
+*/

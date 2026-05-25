@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+/*import { createFileRoute, Link } from "@tanstack/react-router";
 import { AppShell } from "@/components/ajbuy/AppShell";
 import { trackingEvents } from "@/lib/mock-data";
 import { ChevronLeft, Copy, Share2, Check } from "lucide-react";
@@ -77,4 +77,4 @@ function Tracking() {
       </div>
     </AppShell>
   );
-}
+}*/

@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+/*import { createFileRoute } from "@tanstack/react-router";
 import { AdminShell } from "@/components/ajbuy/AdminShell";
 import { transactions } from "@/lib/mock-data";
 import { useState } from "react";
@@ -43,4 +43,4 @@ function AdminFinance() {
       </div>
     </AdminShell>
   );
-}
+}*/

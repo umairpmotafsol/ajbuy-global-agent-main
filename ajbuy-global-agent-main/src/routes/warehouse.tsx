@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+/*import { createFileRoute, Link } from "@tanstack/react-router";
 import { AppShell } from "@/components/ajbuy/AppShell";
 import { StatusBadge } from "@/components/ajbuy/StatusBadge";
 import { ProductPlaceholder } from "@/components/ajbuy/ProductPlaceholder";
@@ -62,3 +62,4 @@ function WarehousePage() {
     </AppShell>
   );
 }
+*/
