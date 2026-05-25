@@ -1,0 +1,5 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "npm install --prefix ajbuy-global-agent-main",
+  "buildCommand": "npm run build --prefix ajbuy-global-agent-main && node scripts/copy-vercel-output.cjs"
+}

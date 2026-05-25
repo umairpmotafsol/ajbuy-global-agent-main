@@ -1,0 +1,11 @@
+{
+  "name": "ajbuy-global-agent-root",
+  "private": true,
+  "scripts": {
+    "build": "npm run build --prefix ajbuy-global-agent-main && node scripts/copy-vercel-output.cjs",
+    "install:app": "npm install --prefix ajbuy-global-agent-main"
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  }
+}
