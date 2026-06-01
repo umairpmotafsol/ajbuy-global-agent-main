@@ -1,4 +1,4 @@
-/*import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { AdminShell } from "@/components/ajbuy/AdminShell";
 import { ProductPlaceholder } from "@/components/ajbuy/ProductPlaceholder";
 import { StatusBadge } from "@/components/ajbuy/StatusBadge";
@@ -62,4 +62,4 @@ function Row({ label, defaultValue, input, readonly }: { label: string; defaultV
       {input && <input type="number" defaultValue={defaultValue} readOnly={readonly} className="w-24 rounded-lg border px-2 py-1 text-right text-sm" />}
     </div>
   );
-}*/
+}
