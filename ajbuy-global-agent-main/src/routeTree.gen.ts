@@ -15,9 +15,13 @@ import { Route as VerifyOtpRouteImport } from './routes/verify-otp'
 import { Route as SupportRouteImport } from './routes/support'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as RegisterRouteImport } from './routes/register'
+import { Route as PaymentRouteImport } from './routes/payment'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ImportRouteImport } from './routes/import'
+import { Route as FavoritesRouteImport } from './routes/favorites'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as CartRouteImport } from './routes/cart'
 import { Route as AffiliateRouteImport } from './routes/affiliate'
 import { Route as AccountRouteImport } from './routes/account'
 import { Route as IndexRouteImport } from './routes/index'
@@ -67,6 +71,11 @@ const RegisterRoute = RegisterRouteImport.update({
   path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PaymentRoute = PaymentRouteImport.update({
+  id: '/payment',
+  path: '/payment',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
@@ -77,9 +86,24 @@ const ImportRoute = ImportRouteImport.update({
   path: '/import',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FavoritesRoute = FavoritesRouteImport.update({
+  id: '/favorites',
+  path: '/favorites',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CartRoute = CartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AffiliateRoute = AffiliateRouteImport.update({
@@ -177,9 +201,13 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/account': typeof AccountRoute
   '/affiliate': typeof AffiliateRoute
+  '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
   '/dashboard': typeof DashboardRoute
+  '/favorites': typeof FavoritesRoute
   '/import': typeof ImportRoute
   '/login': typeof LoginRoute
+  '/payment': typeof PaymentRoute
   '/register': typeof RegisterRoute
   '/search': typeof SearchRoute
   '/support': typeof SupportRoute
@@ -206,9 +234,13 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/account': typeof AccountRoute
   '/affiliate': typeof AffiliateRoute
+  '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
   '/dashboard': typeof DashboardRoute
+  '/favorites': typeof FavoritesRoute
   '/import': typeof ImportRoute
   '/login': typeof LoginRoute
+  '/payment': typeof PaymentRoute
   '/register': typeof RegisterRoute
   '/search': typeof SearchRoute
   '/support': typeof SupportRoute
@@ -236,9 +268,13 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/account': typeof AccountRoute
   '/affiliate': typeof AffiliateRoute
+  '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
   '/dashboard': typeof DashboardRoute
+  '/favorites': typeof FavoritesRoute
   '/import': typeof ImportRoute
   '/login': typeof LoginRoute
+  '/payment': typeof PaymentRoute
   '/register': typeof RegisterRoute
   '/search': typeof SearchRoute
   '/support': typeof SupportRoute
@@ -267,9 +303,13 @@ export interface FileRouteTypes {
     | '/'
     | '/account'
     | '/affiliate'
+    | '/cart'
+    | '/checkout'
     | '/dashboard'
+    | '/favorites'
     | '/import'
     | '/login'
+    | '/payment'
     | '/register'
     | '/search'
     | '/support'
@@ -296,9 +336,13 @@ export interface FileRouteTypes {
     | '/'
     | '/account'
     | '/affiliate'
+    | '/cart'
+    | '/checkout'
     | '/dashboard'
+    | '/favorites'
     | '/import'
     | '/login'
+    | '/payment'
     | '/register'
     | '/search'
     | '/support'
@@ -325,9 +369,13 @@ export interface FileRouteTypes {
     | '/'
     | '/account'
     | '/affiliate'
+    | '/cart'
+    | '/checkout'
     | '/dashboard'
+    | '/favorites'
     | '/import'
     | '/login'
+    | '/payment'
     | '/register'
     | '/search'
     | '/support'
@@ -355,9 +403,13 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AccountRoute: typeof AccountRoute
   AffiliateRoute: typeof AffiliateRoute
+  CartRoute: typeof CartRoute
+  CheckoutRoute: typeof CheckoutRoute
   DashboardRoute: typeof DashboardRoute
+  FavoritesRoute: typeof FavoritesRoute
   ImportRoute: typeof ImportRoute
   LoginRoute: typeof LoginRoute
+  PaymentRoute: typeof PaymentRoute
   RegisterRoute: typeof RegisterRoute
   SearchRoute: typeof SearchRoute
   SupportRoute: typeof SupportRoute
@@ -423,6 +475,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/payment': {
+      id: '/payment'
+      path: '/payment'
+      fullPath: '/payment'
+      preLoaderRoute: typeof PaymentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -437,11 +496,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ImportRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/favorites': {
+      id: '/favorites'
+      path: '/favorites'
+      fullPath: '/favorites'
+      preLoaderRoute: typeof FavoritesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard': {
       id: '/dashboard'
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cart': {
+      id: '/cart'
+      path: '/cart'
+      fullPath: '/cart'
+      preLoaderRoute: typeof CartRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/affiliate': {
@@ -601,9 +681,13 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AccountRoute: AccountRoute,
   AffiliateRoute: AffiliateRoute,
+  CartRoute: CartRoute,
+  CheckoutRoute: CheckoutRoute,
   DashboardRoute: DashboardRoute,
+  FavoritesRoute: FavoritesRoute,
   ImportRoute: ImportRoute,
   LoginRoute: LoginRoute,
+  PaymentRoute: PaymentRoute,
   RegisterRoute: RegisterRoute,
   SearchRoute: SearchRoute,
   SupportRoute: SupportRoute,

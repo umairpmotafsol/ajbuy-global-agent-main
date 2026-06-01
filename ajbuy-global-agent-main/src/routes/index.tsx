@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Logo } from "@/components/ajbuy/Logo";
 import { ThemeToggle } from "@/components/ajbuy/ThemeToggle";
 import { SearchBar } from "@/components/ajbuy/SearchBar";
+import { NavSearchBar } from "@/components/ajbuy/NavSearchBar";
 import { categories, featuredProducts, howItWorks, testimonials } from "@/lib/mock-data";
 import { ArrowRight, Star, Globe, ShieldCheck, Sparkles, Truck, Heart } from "lucide-react";
 import { useState } from "react";
@@ -28,9 +29,13 @@ function Landing() {
     <div className="min-h-screen bg-background text-foreground">
       {/* Top bar */}
       <header className="sticky top-0 z-40 bg-background/70 backdrop-blur-xl border-b border-border">
-        <div className="mx-auto max-w-7xl flex h-14 items-center justify-between px-4 md:px-6">
+        <div className="mx-auto max-w-7xl flex h-16 items-center gap-3 px-4 md:px-6">
           <Logo size="md" />
-          <nav className="hidden md:flex items-center gap-1 text-sm">
+          {/* Search bar — desktop */}
+          <div className="hidden md:flex flex-1 min-w-0">
+            <NavSearchBar />
+          </div>
+          <nav className="hidden md:flex items-center gap-1 text-sm shrink-0">
             <a href="#how" className="px-3 py-1.5 rounded-full text-foreground/70 hover:text-foreground hover:bg-foreground/5 transition">How it works</a>
             <a href="#categories" className="px-3 py-1.5 rounded-full text-foreground/70 hover:text-foreground hover:bg-foreground/5 transition">Categories</a>
             <a href="#estimator" className="px-3 py-1.5 rounded-full text-foreground/70 hover:text-foreground hover:bg-foreground/5 transition">Shipping</a>
@@ -40,10 +45,14 @@ function Landing() {
             </Link>
             <ThemeToggle className="ml-1" />
           </nav>
-          <div className="md:hidden flex items-center gap-2">
+          <div className="md:hidden flex items-center gap-2 ml-auto">
             <ThemeToggle />
             <Link to="/login" className="text-sm font-medium text-primary">Sign in</Link>
           </div>
+        </div>
+        {/* Search bar — mobile */}
+        <div className="md:hidden px-4 pb-3">
+          <NavSearchBar />
         </div>
       </header>
 

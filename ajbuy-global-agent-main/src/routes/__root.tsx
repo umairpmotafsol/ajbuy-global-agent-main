@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { CartProvider } from "@/context/CartContext";
+import { WishlistProvider } from "@/context/WishlistContext";
 import {
   Outlet,
   Link,
@@ -115,7 +116,9 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <CartProvider>
-        <Outlet />
+        <WishlistProvider>
+          <Outlet />
+        </WishlistProvider>
       </CartProvider>
     </QueryClientProvider>
   );

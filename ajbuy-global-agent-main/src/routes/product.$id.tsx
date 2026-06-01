@@ -5,6 +5,7 @@ import { ChevronLeft, Star, Heart, Share2, Shield, Truck, RotateCcw, Minus, Plus
 
 import { useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { useWishlist } from "@/context/WishlistContext";
 import { allProducts } from "@/lib/mock-data";
 
 export const Route = createFileRoute("/product/$id")({ component: ProductDetail });
@@ -29,7 +30,9 @@ const reviews = [
 function ProductDetail() {
   const { id } = Route.useParams();
   const { addItem } = useCart();
+  const { addItem: addToWishlist, removeItem: removeFromWishlist, isWishlisted } = useWishlist();
   const product = allProducts.find((p) => p.id === id);
+  const wishlisted = isWishlisted(id);
   const [color, setColor] = useState("Black");
   const [size, setSize] = useState("Standard");
   const [qty, setQty] = useState(1);
@@ -147,7 +150,16 @@ function ProductDetail() {
               <Link to="/requests" className="w-full rounded-full border-2 border-foreground/20 text-foreground py-2.5 text-sm font-medium text-center hover:bg-muted inline-block">Request to Buy</Link>
             </div>
             <div className="mt-2 flex gap-2">
-              <button className="flex-1 rounded-full border py-2 text-xs inline-flex items-center justify-center gap-1.5 hover:bg-muted"><Heart className="h-3.5 w-3.5" /> Wishlist</button>
+              <button
+                onClick={() => wishlisted
+                  ? removeFromWishlist(id)
+                  : addToWishlist({ id, title: product?.title ?? id, price: product?.price ?? 0, platform: product?.platform ?? "Taobao", emoji: categoryEmoji[product?.category ?? ""] ?? "📦" })
+                }
+                className={`flex-1 rounded-full border py-2 text-xs inline-flex items-center justify-center gap-1.5 transition-colors ${wishlisted ? "bg-red-50 border-red-200 text-red-500" : "hover:bg-muted"}`}
+              >
+                <Heart className={`h-3.5 w-3.5 ${wishlisted ? "fill-red-500" : ""}`} />
+                {wishlisted ? "Saved" : "Wishlist"}
+              </button>
               <button className="flex-1 rounded-full border py-2 text-xs inline-flex items-center justify-center gap-1.5 hover:bg-muted"><Share2 className="h-3.5 w-3.5" /> Share</button>
             </div>
 

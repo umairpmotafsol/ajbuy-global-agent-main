@@ -2,129 +2,147 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { AppShell } from "@/components/ajbuy/AppShell";
 import { StatusBadge } from "@/components/ajbuy/StatusBadge";
 import { ProductPlaceholder } from "@/components/ajbuy/ProductPlaceholder";
-import { SearchBar } from "@/components/ajbuy/SearchBar";
-import { activeOrders, purchaseRequests, user } from "@/lib/mock-data";
-import { PackageSearch, Truck, Warehouse, ShieldCheck, Wallet, LifeBuoy, Gift, ChevronRight } from "lucide-react";
+import { user, purchaseRequests, packages } from "@/lib/mock-data";
+import { PackageSearch } from "lucide-react";
 
 export const Route = createFileRoute("/dashboard")({ component: Dashboard });
 
-const quickActions = [
-  { to: "/import", label: "Import Product", icon: PackageSearch },
-  { to: "/tracking/AJ-10277", label: "Track Order", icon: Truck },
-  { to: "/warehouse", label: "Warehouse", icon: Warehouse },
-  { to: "/warehouse/WH-4421/qc", label: "QC Review", icon: ShieldCheck },
-  { to: "/wallet", label: "Recharge", icon: Wallet },
-  { to: "/support", label: "Support", icon: LifeBuoy },
+const pendingPayment  = purchaseRequests.filter((r) => r.status === "Awaiting Payment").length;
+const pendingPurchase = purchaseRequests.filter((r) => r.status === "Pending Quote").length;
+const stored          = packages.length;
+const processing      = purchaseRequests.filter((r) => r.status === "Processing").length;
+const shipped         = purchaseRequests.filter((r) => r.status === "Completed").length;
+
+const orderStats = [
+  { label: "Pending Payment",  value: pendingPayment },
+  { label: "Pending Purchase", value: pendingPurchase },
+  { label: "Stored",           value: stored },
+  { label: "Processing",       value: processing },
+  { label: "Shipped",          value: shipped },
 ];
 
 function Dashboard() {
   return (
     <AppShell>
-      <div className="p-4 md:p-6 space-y-6 max-w-5xl">
-        {/* Welcome + wallet */}
-        <div className="flex flex-col md:flex-row md:items-end gap-4 md:justify-between">
-          <div>
-            <h1 className="font-display text-2xl md:text-3xl">Welcome back, Ahmed 👋</h1>
-            <p className="text-sm text-muted-foreground mt-1">Here's what's happening with your orders.</p>
-          </div>
-          <Link to="/wallet" className="rounded-2xl border bg-card p-4 shadow-card flex items-center gap-4 hover:shadow-card-hover transition-shadow">
-            <div className="h-10 w-10 rounded-full bg-primary/10 text-primary flex items-center justify-center"><Wallet className="h-5 w-5" /></div>
-            <div>
-              <div className="text-xs text-muted-foreground">Wallet balance</div>
-              <div className="font-display text-xl">${user.wallet.toFixed(2)} <span className="text-xs text-muted-foreground font-sans">+ ${user.bonus.toFixed(2)} bonus</span></div>
+      <div className="p-4 md:p-6 max-w-5xl space-y-4">
+
+        {/* Profile card */}
+        <div className="rounded-2xl border bg-card shadow-card p-5 flex flex-col sm:flex-row sm:items-center gap-4">
+          <div className="flex items-center gap-4 flex-1 min-w-0">
+            <div className="h-16 w-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-2xl font-bold shrink-0">
+              {user.avatar}
             </div>
-            <ChevronRight className="h-4 w-4 ml-2 text-muted-foreground" />
-          </Link>
-        </div>
-
-        {/* Prominent search */}
-        <div className="rounded-2xl bg-gradient-to-br from-primary/8 via-primary/5 to-transparent border border-primary/20 p-5 md:p-6 space-y-3">
-          <div>
-            <p className="font-display text-lg">Find any product from China</p>
-            <p className="text-sm text-muted-foreground">Search by name or paste a Taobao / 1688 / Tmall link</p>
-          </div>
-          <SearchBar size="lg" />
-        </div>
-
-        {/* Quick actions */}
-        <div className="flex gap-3 overflow-x-auto scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-6">
-          {quickActions.map((a) => {
-            const Icon = a.icon;
-            return (
-              <Link key={a.label} to={a.to} className="shrink-0 md:shrink min-w-[110px] rounded-2xl border bg-card p-4 hover:border-primary hover:shadow-card-hover transition-all text-center">
-                <Icon className="h-5 w-5 mx-auto text-primary" />
-                <div className="text-xs mt-2 font-medium">{a.label}</div>
-              </Link>
-            );
-          })}
-        </div>
-
-        {/* Active orders */}
-        <section>
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="font-display text-xl">Active Orders</h2>
-            <Link to="/requests" className="text-xs text-primary hover:underline">View all</Link>
-          </div>
-          <div className="flex gap-3 overflow-x-auto scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-3">
-            {activeOrders.map((o) => (
-              <div key={o.id} className="shrink-0 md:shrink w-72 md:w-auto rounded-2xl border bg-card p-4 shadow-card">
-                <div className="flex gap-3">
-                  <ProductPlaceholder className="h-14 w-14 shrink-0" />
-                  <div className="min-w-0 flex-1">
-                    <div className="text-xs text-muted-foreground">{o.id}</div>
-                    <div className="font-medium truncate">{o.title}</div>
-                    <StatusBadge status={o.status} />
-                  </div>
-                </div>
-                <div className="mt-4">
-                  <div className="flex justify-between text-[10px] uppercase text-muted-foreground mb-1">
-                    <span>Purchased</span><span>Warehouse</span><span>QC</span><span>Shipped</span>
-                  </div>
-                  <div className="flex gap-1">
-                    {[1, 2, 3, 4].map((s) => (
-                      <div key={s} className={`h-1.5 flex-1 rounded-full ${s <= o.step ? "bg-primary" : "bg-muted"}`} />
-                    ))}
-                  </div>
-                </div>
+            <div className="min-w-0">
+              <div className="font-display text-xl">{user.name}</div>
+              <div className="text-sm text-muted-foreground mt-0.5">{user.email}</div>
+              <div className="flex items-center gap-2 mt-1.5 flex-wrap">
+                <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">Verified</span>
+                <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">{user.country}</span>
               </div>
-            ))}
+            </div>
           </div>
-        </section>
 
-        {/* Recent requests */}
-        <section>
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="font-display text-xl">Recent Purchase Requests</h2>
-            <Link to="/requests" className="text-xs text-primary hover:underline">View all</Link>
+          <div className="rounded-xl border bg-muted/30 px-5 py-3 flex items-center gap-4 shrink-0 self-start sm:self-auto">
+            <div>
+              <div className="text-xs text-muted-foreground uppercase tracking-wider">Balance</div>
+              <div className="font-display text-2xl mt-0.5">${user.wallet.toFixed(2)}</div>
+            </div>
+            <Link
+              to="/wallet"
+              className="rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:bg-primary-deep transition-colors whitespace-nowrap"
+            >
+              Recharge
+            </Link>
           </div>
-          <div className="rounded-2xl border bg-card divide-y shadow-card">
-            {purchaseRequests.slice(0, 4).map((r) => (
-              <Link key={r.id} to="/requests/$id" params={{ id: r.id }} className="flex items-center gap-3 p-4 hover:bg-muted/40">
-                <ProductPlaceholder className="h-12 w-12 shrink-0" />
-                <div className="min-w-0 flex-1">
-                  <div className="font-medium truncate">{r.title}</div>
-                  <div className="text-xs text-muted-foreground">{r.id} · {r.date}</div>
-                </div>
-                <div className="text-right shrink-0">
-                  <StatusBadge status={r.status} />
-                  {r.price && <div className="text-sm mt-1 font-medium">${r.price.toFixed(2)}</div>}
-                </div>
+        </div>
+
+        {/* Order stats */}
+        <div className="rounded-2xl border bg-card shadow-card overflow-hidden">
+          <div className="grid grid-cols-3 sm:grid-cols-5 divide-x divide-y sm:divide-y-0">
+            {orderStats.map((s) => (
+              <Link
+                key={s.label}
+                to="/requests"
+                className="flex flex-col items-center justify-center py-5 px-2 hover:bg-muted/40 transition-colors text-center gap-1.5"
+              >
+                <span className="font-display text-3xl leading-none">{s.value}</span>
+                <span className="text-xs text-muted-foreground leading-tight">{s.label}</span>
               </Link>
             ))}
           </div>
-        </section>
+        </div>
 
-        {/* Promo banner */}
-        <Link to="/affiliate" className="block rounded-2xl bg-gradient-to-r from-primary to-primary-deep text-primary-foreground p-5 md:p-6 shadow-card-hover overflow-hidden relative">
-          <div className="flex items-center gap-4">
-            <Gift className="h-8 w-8 shrink-0" />
-            <div>
-              <div className="font-display text-lg">Free QC on orders over $50</div>
-              <div className="text-sm opacity-90">Plus earn $5 for every friend you refer.</div>
-            </div>
-            <ChevronRight className="h-5 w-5 ml-auto" />
+        {/* Orders table */}
+        <div className="rounded-2xl border bg-card shadow-card overflow-hidden">
+          <div className="flex items-center justify-between px-5 py-4 border-b">
+            <h2 className="font-display text-lg">My Orders</h2>
+            <Link to="/requests" className="text-xs text-primary hover:underline font-medium">View all</Link>
           </div>
-        </Link>
+
+          {purchaseRequests.length === 0 ? (
+            <div className="py-16 flex flex-col items-center gap-3 text-muted-foreground">
+              <PackageSearch className="h-14 w-14 opacity-20" />
+              <p className="font-display text-lg text-foreground">No order information</p>
+              <p className="text-sm text-center max-w-xs">Submit a purchase request to get started.</p>
+              <Link
+                to="/import"
+                className="mt-2 rounded-full bg-primary text-primary-foreground px-5 py-2.5 text-sm font-medium hover:bg-primary-deep"
+              >
+                Import a product
+              </Link>
+            </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead className="bg-muted/40 text-xs uppercase text-muted-foreground">
+                  <tr>
+                    <th className="text-left p-4">Product Information</th>
+                    <th className="text-right p-4 hidden sm:table-cell">Unit Price</th>
+                    <th className="text-right p-4 hidden sm:table-cell">Quantity</th>
+                    <th className="text-center p-4">Order Status</th>
+                    <th className="text-right p-4 hidden md:table-cell">Order Amount</th>
+                    <th className="text-right p-4">Operate</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y">
+                  {purchaseRequests.map((r) => (
+                    <tr key={r.id} className="hover:bg-muted/30 transition-colors">
+                      <td className="p-4">
+                        <div className="flex items-center gap-3">
+                          <ProductPlaceholder className="h-12 w-12 shrink-0 rounded-lg" />
+                          <div className="min-w-0">
+                            <div className="font-medium text-sm truncate max-w-[140px] md:max-w-xs">{r.title}</div>
+                            <div className="text-xs text-muted-foreground mt-0.5">{r.id} · {r.date}</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="p-4 text-right hidden sm:table-cell">
+                        {r.price ? `$${(r.price / r.qty).toFixed(2)}` : "—"}
+                      </td>
+                      <td className="p-4 text-right hidden sm:table-cell">{r.qty}</td>
+                      <td className="p-4 text-center">
+                        <StatusBadge status={r.status} />
+                      </td>
+                      <td className="p-4 text-right font-medium hidden md:table-cell">
+                        {r.price ? `$${r.price.toFixed(2)}` : "—"}
+                      </td>
+                      <td className="p-4 text-right">
+                        <Link
+                          to="/requests/$id"
+                          params={{ id: r.id }}
+                          className="text-xs text-primary hover:underline font-medium"
+                        >
+                          View
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+
       </div>
     </AppShell>
   );
