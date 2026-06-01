@@ -1,4 +1,4 @@
-/*import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { AppShell } from "@/components/ajbuy/AppShell";
 import { StatusBadge } from "@/components/ajbuy/StatusBadge";
 import { ProductPlaceholder } from "@/components/ajbuy/ProductPlaceholder";
@@ -37,8 +37,8 @@ function WarehousePage() {
               {expanded === p.id && (
                 <div className="border-t p-4 bg-muted/20 space-y-3">
                   <div className="grid grid-cols-3 gap-2">
-                    {Array.from({ length: 3 }).map((_, i) => (
-                      <div key={i} className="aspect-square bg-muted rounded-lg flex items-center justify-center text-muted-foreground"><Camera className="h-6 w-6" /></div>
+                    {["photo-1", "photo-2", "photo-3"].map((id) => (
+                      <div key={id} className="aspect-square bg-muted rounded-lg flex items-center justify-center text-muted-foreground"><Camera className="h-6 w-6" /></div>
                     ))}
                   </div>
                   <div className="flex items-center gap-2 text-sm">
@@ -62,4 +62,3 @@ function WarehousePage() {
     </AppShell>
   );
 }
-*/

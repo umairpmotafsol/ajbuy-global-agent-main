@@ -1,4 +1,4 @@
-/*import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { AppShell } from "@/components/ajbuy/AppShell";
 import { transactions, user } from "@/lib/mock-data";
 import { useState } from "react";
@@ -86,10 +86,10 @@ function Wallet() {
   );
 }
 
-function Action({ icon, label, primary, onClick }: { icon: React.ReactNode; label: string; primary?: boolean; onClick?: () => void }) {
+function Action({ icon, label, primary, onClick }: Readonly<{ icon: React.ReactNode; label: string; primary?: boolean; onClick?: () => void }>) {
   return (
     <button onClick={onClick} className={`rounded-2xl py-4 font-medium inline-flex flex-col items-center gap-1 text-sm ${primary ? "bg-primary text-primary-foreground hover:bg-primary-deep" : "border bg-card hover:bg-muted"}`}>
       {icon}{label}
     </button>
   );
-}*/
+}

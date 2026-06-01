@@ -9,6 +9,8 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WarehouseRouteImport } from './routes/warehouse'
+import { Route as WalletRouteImport } from './routes/wallet'
 import { Route as VerifyOtpRouteImport } from './routes/verify-otp'
 import { Route as SupportRouteImport } from './routes/support'
 import { Route as SearchRouteImport } from './routes/search'
@@ -20,6 +22,7 @@ import { Route as AffiliateRouteImport } from './routes/affiliate'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as RequestsIndexRouteImport } from './routes/requests.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as TrackingIdRouteImport } from './routes/tracking.$id'
 import { Route as ShippingIdRouteImport } from './routes/shipping.$id'
 import { Route as RequestsIdRouteImport } from './routes/requests.$id'
 import { Route as ProductIdRouteImport } from './routes/product.$id'
@@ -27,8 +30,19 @@ import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminRequestsRouteImport } from './routes/admin.requests'
 import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
 import { Route as AdminFinanceRouteImport } from './routes/admin.finance'
+import { Route as WarehouseIdQcRouteImport } from './routes/warehouse.$id.qc'
 import { Route as AdminOrdersIdRouteImport } from './routes/admin.orders.$id'
 
+const WarehouseRoute = WarehouseRouteImport.update({
+  id: '/warehouse',
+  path: '/warehouse',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WalletRoute = WalletRouteImport.update({
+  id: '/wallet',
+  path: '/wallet',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VerifyOtpRoute = VerifyOtpRouteImport.update({
   id: '/verify-otp',
   path: '/verify-otp',
@@ -84,6 +98,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/admin/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TrackingIdRoute = TrackingIdRouteImport.update({
+  id: '/tracking/$id',
+  path: '/tracking/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ShippingIdRoute = ShippingIdRouteImport.update({
   id: '/shipping/$id',
   path: '/shipping/$id',
@@ -119,6 +138,11 @@ const AdminFinanceRoute = AdminFinanceRouteImport.update({
   path: '/admin/finance',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WarehouseIdQcRoute = WarehouseIdQcRouteImport.update({
+  id: '/$id/qc',
+  path: '/$id/qc',
+  getParentRoute: () => WarehouseRoute,
+} as any)
 const AdminOrdersIdRoute = AdminOrdersIdRouteImport.update({
   id: '/$id',
   path: '/$id',
@@ -135,6 +159,8 @@ export interface FileRoutesByFullPath {
   '/search': typeof SearchRoute
   '/support': typeof SupportRoute
   '/verify-otp': typeof VerifyOtpRoute
+  '/wallet': typeof WalletRoute
+  '/warehouse': typeof WarehouseRouteWithChildren
   '/admin/finance': typeof AdminFinanceRoute
   '/admin/orders': typeof AdminOrdersRouteWithChildren
   '/admin/requests': typeof AdminRequestsRoute
@@ -142,9 +168,11 @@ export interface FileRoutesByFullPath {
   '/product/$id': typeof ProductIdRoute
   '/requests/$id': typeof RequestsIdRoute
   '/shipping/$id': typeof ShippingIdRoute
+  '/tracking/$id': typeof TrackingIdRoute
   '/admin/': typeof AdminIndexRoute
   '/requests/': typeof RequestsIndexRoute
   '/admin/orders/$id': typeof AdminOrdersIdRoute
+  '/warehouse/$id/qc': typeof WarehouseIdQcRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -156,6 +184,8 @@ export interface FileRoutesByTo {
   '/search': typeof SearchRoute
   '/support': typeof SupportRoute
   '/verify-otp': typeof VerifyOtpRoute
+  '/wallet': typeof WalletRoute
+  '/warehouse': typeof WarehouseRouteWithChildren
   '/admin/finance': typeof AdminFinanceRoute
   '/admin/orders': typeof AdminOrdersRouteWithChildren
   '/admin/requests': typeof AdminRequestsRoute
@@ -163,9 +193,11 @@ export interface FileRoutesByTo {
   '/product/$id': typeof ProductIdRoute
   '/requests/$id': typeof RequestsIdRoute
   '/shipping/$id': typeof ShippingIdRoute
+  '/tracking/$id': typeof TrackingIdRoute
   '/admin': typeof AdminIndexRoute
   '/requests': typeof RequestsIndexRoute
   '/admin/orders/$id': typeof AdminOrdersIdRoute
+  '/warehouse/$id/qc': typeof WarehouseIdQcRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -178,6 +210,8 @@ export interface FileRoutesById {
   '/search': typeof SearchRoute
   '/support': typeof SupportRoute
   '/verify-otp': typeof VerifyOtpRoute
+  '/wallet': typeof WalletRoute
+  '/warehouse': typeof WarehouseRouteWithChildren
   '/admin/finance': typeof AdminFinanceRoute
   '/admin/orders': typeof AdminOrdersRouteWithChildren
   '/admin/requests': typeof AdminRequestsRoute
@@ -185,9 +219,11 @@ export interface FileRoutesById {
   '/product/$id': typeof ProductIdRoute
   '/requests/$id': typeof RequestsIdRoute
   '/shipping/$id': typeof ShippingIdRoute
+  '/tracking/$id': typeof TrackingIdRoute
   '/admin/': typeof AdminIndexRoute
   '/requests/': typeof RequestsIndexRoute
   '/admin/orders/$id': typeof AdminOrdersIdRoute
+  '/warehouse/$id/qc': typeof WarehouseIdQcRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -201,6 +237,8 @@ export interface FileRouteTypes {
     | '/search'
     | '/support'
     | '/verify-otp'
+    | '/wallet'
+    | '/warehouse'
     | '/admin/finance'
     | '/admin/orders'
     | '/admin/requests'
@@ -208,9 +246,11 @@ export interface FileRouteTypes {
     | '/product/$id'
     | '/requests/$id'
     | '/shipping/$id'
+    | '/tracking/$id'
     | '/admin/'
     | '/requests/'
     | '/admin/orders/$id'
+    | '/warehouse/$id/qc'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -222,6 +262,8 @@ export interface FileRouteTypes {
     | '/search'
     | '/support'
     | '/verify-otp'
+    | '/wallet'
+    | '/warehouse'
     | '/admin/finance'
     | '/admin/orders'
     | '/admin/requests'
@@ -229,9 +271,11 @@ export interface FileRouteTypes {
     | '/product/$id'
     | '/requests/$id'
     | '/shipping/$id'
+    | '/tracking/$id'
     | '/admin'
     | '/requests'
     | '/admin/orders/$id'
+    | '/warehouse/$id/qc'
   id:
     | '__root__'
     | '/'
@@ -243,6 +287,8 @@ export interface FileRouteTypes {
     | '/search'
     | '/support'
     | '/verify-otp'
+    | '/wallet'
+    | '/warehouse'
     | '/admin/finance'
     | '/admin/orders'
     | '/admin/requests'
@@ -250,9 +296,11 @@ export interface FileRouteTypes {
     | '/product/$id'
     | '/requests/$id'
     | '/shipping/$id'
+    | '/tracking/$id'
     | '/admin/'
     | '/requests/'
     | '/admin/orders/$id'
+    | '/warehouse/$id/qc'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -265,6 +313,8 @@ export interface RootRouteChildren {
   SearchRoute: typeof SearchRoute
   SupportRoute: typeof SupportRoute
   VerifyOtpRoute: typeof VerifyOtpRoute
+  WalletRoute: typeof WalletRoute
+  WarehouseRoute: typeof WarehouseRouteWithChildren
   AdminFinanceRoute: typeof AdminFinanceRoute
   AdminOrdersRoute: typeof AdminOrdersRouteWithChildren
   AdminRequestsRoute: typeof AdminRequestsRoute
@@ -272,12 +322,27 @@ export interface RootRouteChildren {
   ProductIdRoute: typeof ProductIdRoute
   RequestsIdRoute: typeof RequestsIdRoute
   ShippingIdRoute: typeof ShippingIdRoute
+  TrackingIdRoute: typeof TrackingIdRoute
   AdminIndexRoute: typeof AdminIndexRoute
   RequestsIndexRoute: typeof RequestsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/warehouse': {
+      id: '/warehouse'
+      path: '/warehouse'
+      fullPath: '/warehouse'
+      preLoaderRoute: typeof WarehouseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/wallet': {
+      id: '/wallet'
+      path: '/wallet'
+      fullPath: '/wallet'
+      preLoaderRoute: typeof WalletRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/verify-otp': {
       id: '/verify-otp'
       path: '/verify-otp'
@@ -355,6 +420,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tracking/$id': {
+      id: '/tracking/$id'
+      path: '/tracking/$id'
+      fullPath: '/tracking/$id'
+      preLoaderRoute: typeof TrackingIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/shipping/$id': {
       id: '/shipping/$id'
       path: '/shipping/$id'
@@ -404,6 +476,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminFinanceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/warehouse/$id/qc': {
+      id: '/warehouse/$id/qc'
+      path: '/$id/qc'
+      fullPath: '/warehouse/$id/qc'
+      preLoaderRoute: typeof WarehouseIdQcRouteImport
+      parentRoute: typeof WarehouseRoute
+    }
     '/admin/orders/$id': {
       id: '/admin/orders/$id'
       path: '/$id'
@@ -413,6 +492,18 @@ declare module '@tanstack/react-router' {
     }
   }
 }
+
+interface WarehouseRouteChildren {
+  WarehouseIdQcRoute: typeof WarehouseIdQcRoute
+}
+
+const WarehouseRouteChildren: WarehouseRouteChildren = {
+  WarehouseIdQcRoute: WarehouseIdQcRoute,
+}
+
+const WarehouseRouteWithChildren = WarehouseRoute._addFileChildren(
+  WarehouseRouteChildren,
+)
 
 interface AdminOrdersRouteChildren {
   AdminOrdersIdRoute: typeof AdminOrdersIdRoute
@@ -436,6 +527,8 @@ const rootRouteChildren: RootRouteChildren = {
   SearchRoute: SearchRoute,
   SupportRoute: SupportRoute,
   VerifyOtpRoute: VerifyOtpRoute,
+  WalletRoute: WalletRoute,
+  WarehouseRoute: WarehouseRouteWithChildren,
   AdminFinanceRoute: AdminFinanceRoute,
   AdminOrdersRoute: AdminOrdersRouteWithChildren,
   AdminRequestsRoute: AdminRequestsRoute,
@@ -443,6 +536,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProductIdRoute: ProductIdRoute,
   RequestsIdRoute: RequestsIdRoute,
   ShippingIdRoute: ShippingIdRoute,
+  TrackingIdRoute: TrackingIdRoute,
   AdminIndexRoute: AdminIndexRoute,
   RequestsIndexRoute: RequestsIndexRoute,
 }

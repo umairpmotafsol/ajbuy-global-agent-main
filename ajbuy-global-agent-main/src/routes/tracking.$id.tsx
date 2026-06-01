@@ -1,4 +1,4 @@
-/*import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { AppShell } from "@/components/ajbuy/AppShell";
 import { trackingEvents } from "@/lib/mock-data";
 import { ChevronLeft, Copy, Share2, Check } from "lucide-react";
@@ -42,7 +42,7 @@ function Tracking() {
             <div className="absolute left-3.5 top-2 bottom-2 w-0.5 bg-muted" />
             <ul className="space-y-5">
               {steps.map((s, i) => (
-                <li key={i} className="flex gap-4 items-start relative">
+                <li key={s.label} className="flex gap-4 items-start relative">
                   <div className={`h-7 w-7 rounded-full shrink-0 flex items-center justify-center text-xs z-10 ${s.done ? "bg-primary text-primary-foreground" : "bg-muted border-2 border-background text-muted-foreground"} ${s.active ? "ring-4 ring-primary/20 animate-pulse" : ""}`}>
                     {s.done ? <Check className="h-3.5 w-3.5" /> : i + 1}
                   </div>
@@ -59,8 +59,8 @@ function Tracking() {
         <div className="mt-6 rounded-2xl border bg-card p-5 shadow-card">
           <h2 className="font-display text-lg mb-3">Tracking events</h2>
           <ul className="divide-y">
-            {trackingEvents.map((e, i) => (
-              <li key={i} className="py-3 flex gap-4">
+            {trackingEvents.map((e) => (
+              <li key={e.time} className="py-3 flex gap-4">
                 <div className="text-xs text-muted-foreground w-28 shrink-0">{e.time}</div>
                 <div className="flex-1">
                   <div className="text-sm font-medium">{e.text}</div>
@@ -77,4 +77,4 @@ function Tracking() {
       </div>
     </AppShell>
   );
-}*/
+}

@@ -1,4 +1,4 @@
-/*import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { AppShell } from "@/components/ajbuy/AppShell";
 import { ChevronLeft, Camera, Play, AlertTriangle, Check, RefreshCw, ArrowLeftRight } from "lucide-react";
 
@@ -23,8 +23,8 @@ function QCReview() {
         <div className="mt-6">
           <div className="text-xs uppercase tracking-wider text-muted-foreground mb-2">Photo evidence</div>
           <div className="grid grid-cols-3 gap-2">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="aspect-square bg-muted rounded-lg flex items-center justify-center text-muted-foreground hover:bg-muted/70 cursor-pointer">
+            {["photo-1", "photo-2", "photo-3", "photo-4", "photo-5", "photo-6"].map((id) => (
+              <div key={id} className="aspect-square bg-muted rounded-lg flex items-center justify-center text-muted-foreground hover:bg-muted/70 cursor-pointer">
                 <Camera className="h-6 w-6" />
               </div>
             ))}
@@ -54,4 +54,3 @@ function QCReview() {
     </AppShell>
   );
 }
-*/
