@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Home, PackageSearch, ListOrdered, Warehouse, User, Bell, Search, Globe, Wallet, Users as UsersIcon, LifeBuoy, Gift, Truck } from "lucide-react";
+import { Home, PackageSearch, ListOrdered, Warehouse, User, Bell, Globe, Wallet, LifeBuoy, Gift, Truck, Search } from "lucide-react";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
 import { ReactNode } from "react";

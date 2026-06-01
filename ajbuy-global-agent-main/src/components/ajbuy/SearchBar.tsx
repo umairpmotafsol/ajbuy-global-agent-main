@@ -78,7 +78,10 @@ export function SearchBar({ size = "md", autoFocus, initialQuery = "" }: Readonl
 
   function handleKeyDown(e: React.KeyboardEvent) {
     if (!dropdownVisible) return;
-    const items = urlMode ? 1 : showRecent ? recentSearches.length : suggestions.length;
+    let items: number;
+    if (urlMode) items = 1;
+    else if (showRecent) items = recentSearches.length;
+    else items = suggestions.length;
     if (e.key === "ArrowDown") {
       e.preventDefault();
       setCursor((c) => Math.min(c + 1, items - 1));
@@ -159,7 +162,7 @@ export function SearchBar({ size = "md", autoFocus, initialQuery = "" }: Readonl
 
       {/* Dropdown */}
       {dropdownVisible && (
-        <div className="absolute top-full mt-2 inset-x-0 z-50 rounded-2xl border bg-card shadow-card-hover overflow-hidden">
+        <div className="absolute top-full mt-2 inset-x-0 z-50 rounded-2xl border bg-card shadow-card-hover overflow-hidden max-h-[60vh] overflow-y-auto">
           {urlMode && (
             <button
               onClick={() => submit(query)}

@@ -38,7 +38,7 @@ function Wallet() {
         {showTopup && (
           <div className="rounded-2xl border bg-card p-5 shadow-card space-y-4">
             <h3 className="font-display text-lg">Top up wallet</h3>
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {[50, 100, 200, "Custom"].map((amt) => (
                 <button key={amt} className="rounded-xl border-2 py-3 text-sm font-medium hover:border-primary hover:text-primary">${amt}</button>
               ))}

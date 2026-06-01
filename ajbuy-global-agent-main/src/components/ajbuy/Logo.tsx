@@ -3,10 +3,10 @@ import logoUrl from "@/assets/ajbuy-logo.png";
 
 type Size = "sm" | "md" | "lg" | "xl";
 const sizes: Record<Size, string> = {
-  sm: "h-7 md:h-8",
-  md: "h-8 md:h-9",
-  lg: "h-10 md:h-12",
-  xl: "h-16 md:h-20",
+  sm: "h-8 md:h-9",
+  md: "h-12 md:h-13",
+  lg: "h-14 md:h-16",
+  xl: "h-20 md:h-24",
 };
 
 export function Logo({ className = "", size = "md", asLink = true }: { className?: string; size?: Size; asLink?: boolean }) {

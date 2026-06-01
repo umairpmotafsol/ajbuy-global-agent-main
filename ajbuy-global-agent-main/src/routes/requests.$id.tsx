@@ -42,9 +42,9 @@ function QuoteDetail() {
                 <div className="text-sm font-medium">${line.value.toFixed(2)}</div>
                 {line.actions && (
                   <div className="flex gap-1">
-                    <button title="Approve" className="h-8 w-8 rounded-full border inline-flex items-center justify-center text-green-600 hover:bg-green-50"><Check className="h-4 w-4" /></button>
-                    <button title="Exchange" className="h-8 w-8 rounded-full border inline-flex items-center justify-center text-amber-600 hover:bg-amber-50"><RefreshCw className="h-4 w-4" /></button>
-                    <button title="Reject" className="h-8 w-8 rounded-full border inline-flex items-center justify-center text-red-600 hover:bg-red-50"><X className="h-4 w-4" /></button>
+                    <button title="Approve" className="h-10 w-10 rounded-full border inline-flex items-center justify-center text-green-600 hover:bg-green-50"><Check className="h-4 w-4" /></button>
+                    <button title="Exchange" className="h-10 w-10 rounded-full border inline-flex items-center justify-center text-amber-600 hover:bg-amber-50"><RefreshCw className="h-4 w-4" /></button>
+                    <button title="Reject" className="h-10 w-10 rounded-full border inline-flex items-center justify-center text-red-600 hover:bg-red-50"><X className="h-4 w-4" /></button>
                   </div>
                 )}
               </div>

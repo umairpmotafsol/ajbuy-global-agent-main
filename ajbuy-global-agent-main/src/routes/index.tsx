@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Logo } from "@/components/ajbuy/Logo";
 import { ThemeToggle } from "@/components/ajbuy/ThemeToggle";
+import { SearchBar } from "@/components/ajbuy/SearchBar";
 import { categories, featuredProducts, howItWorks, testimonials } from "@/lib/mock-data";
-import { ArrowRight, Star, Globe, ShieldCheck, Sparkles, Truck, Search, Heart } from "lucide-react";
+import { ArrowRight, Star, Globe, ShieldCheck, Sparkles, Truck, Heart } from "lucide-react";
 import { useState } from "react";
 
 export const Route = createFileRoute("/")({
@@ -33,9 +34,6 @@ function Landing() {
             <a href="#how" className="px-3 py-1.5 rounded-full text-foreground/70 hover:text-foreground hover:bg-foreground/5 transition">How it works</a>
             <a href="#categories" className="px-3 py-1.5 rounded-full text-foreground/70 hover:text-foreground hover:bg-foreground/5 transition">Categories</a>
             <a href="#estimator" className="px-3 py-1.5 rounded-full text-foreground/70 hover:text-foreground hover:bg-foreground/5 transition">Shipping</a>
-            <Link to="/search" className="px-3 py-1.5 rounded-full text-foreground/70 hover:text-foreground hover:bg-foreground/5 transition inline-flex items-center gap-1.5">
-              <Search className="h-3.5 w-3.5" /> Search
-            </Link>
             <Link to="/login" className="px-3 py-1.5 rounded-full text-foreground/70 hover:text-foreground hover:bg-foreground/5 transition">Sign in</Link>
             <Link to="/register" className="ml-1 inline-flex items-center rounded-full bg-primary px-4 py-2 text-primary-foreground text-sm font-semibold shadow-glow-primary hover:brightness-110 transition">
               Get Started
@@ -53,31 +51,44 @@ function Landing() {
       <section className="px-3 md:px-6 lg:px-10 pt-4 md:pt-6 pb-8 md:pb-10">
         <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4">
           {/* Hero card */}
-          <div className="md:col-span-8 bg-card rounded-3xl p-6 md:p-9 flex flex-col justify-between overflow-hidden relative ring-soft min-h-[300px] md:min-h-[380px]">
-            <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-3 py-1 rounded-full mb-4 md:mb-5">
-                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                <span className="font-display text-primary text-[10px] font-semibold tracking-[0.18em] uppercase">Live global sourcing</span>
+          <div className="md:col-span-8 bg-card rounded-3xl p-6 md:p-9 flex flex-col justify-between relative ring-soft min-h-[300px] md:min-h-[420px]">
+            <div className="relative z-10 flex flex-col gap-5 md:gap-6">
+              <div>
+                <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-3 py-1 rounded-full mb-4 md:mb-5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                  <span className="font-display text-primary text-[10px] font-semibold tracking-[0.18em] uppercase">Live global sourcing</span>
+                </div>
+                <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
+                  Shop Like a<br /><span className="text-primary">Millionaire.</span>
+                </h1>
+                <p className="mt-3 md:mt-4 text-sm md:text-base text-foreground/60 max-w-md leading-relaxed">
+                  Source anything from Taobao & 1688. We buy, inspect, and ship worldwide — at insider prices.
+                </p>
               </div>
-              <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05]">
-                Shop Like a<br /><span className="text-primary">Millionaire.</span>
-              </h1>
-              <p className="mt-3 md:mt-4 text-sm md:text-base text-foreground/60 max-w-md leading-relaxed">
-                Source anything from Taobao & 1688. We buy, inspect, and ship worldwide — at insider prices.
-              </p>
+
+              {/* Prominent search */}
+              <div className="w-full max-w-xl">
+                <SearchBar size="lg" />
+                <p className="mt-2.5 text-xs text-foreground/40 pl-1">
+                  Paste a product URL or search by name — we'll quote it within hours.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-2.5">
+                <a href="#estimator" className="inline-flex items-center gap-1.5 rounded-xl bg-foreground/5 border border-border px-4 py-2 text-foreground font-semibold text-sm hover:bg-foreground/10 transition">
+                  Estimate Shipping <ArrowRight className="h-3.5 w-3.5" />
+                </a>
+                <a href="#how" className="inline-flex items-center gap-1.5 rounded-xl bg-foreground/5 border border-border px-4 py-2 text-foreground/70 font-semibold text-sm hover:bg-foreground/10 transition">
+                  How it works
+                </a>
+              </div>
             </div>
 
-            <div className="mt-5 md:mt-6 flex flex-wrap gap-2.5 relative z-10">
-              <Link to="/register" className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-primary-foreground font-semibold text-sm shadow-glow-primary hover:brightness-110 transition">
-                Start Shopping <ArrowRight className="h-4 w-4" />
-              </Link>
-              <a href="#estimator" className="inline-flex items-center rounded-xl bg-foreground/5 border border-border px-5 py-2.5 text-foreground font-semibold text-sm hover:bg-foreground/10 transition">
-                Estimate Shipping
-              </a>
+            {/* Decorations — clipped independently so the search dropdown can overflow */}
+            <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
+              <div className="absolute top-0 right-0 w-1/2 h-full opacity-40 bg-dot-grid [mask-image:radial-gradient(closest-side,black,transparent)]" />
+              <div className="absolute -top-24 -right-24 w-80 h-80 bg-primary/15 blur-[110px] rounded-full" />
             </div>
-
-            <div className="absolute top-0 right-0 w-1/2 h-full opacity-40 pointer-events-none bg-dot-grid [mask-image:radial-gradient(closest-side,black,transparent)]" />
-            <div className="absolute -top-24 -right-24 w-80 h-80 bg-primary/15 blur-[110px] rounded-full pointer-events-none" />
           </div>
 
           {/* Logo / brand card (replaces mascot) */}
@@ -306,8 +317,8 @@ function Landing() {
       <footer className="border-t border-border mt-6">
         <div className="mx-auto max-w-7xl px-4 md:px-6 py-8 md:py-10 grid grid-cols-2 md:grid-cols-4 gap-6">
           <div className="col-span-2 md:col-span-1">
-            <Logo size="md" />
-            <p className="text-xs md:text-sm text-foreground/60 mt-2">Shop Like a Millionaire.</p>
+            <Logo size="lg" />
+            <p className="text-xs md:text-sm text-foreground/60 mt-3">Shop Like a Millionaire.</p>
           </div>
           <div>
             <h4 className="font-display font-semibold mb-2 text-sm">Company</h4>

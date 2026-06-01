@@ -51,14 +51,22 @@ export function AdminShell({ children }: { children: ReactNode }) {
       </div>
 
       <nav className="lg:hidden fixed bottom-0 inset-x-0 z-40 border-t bg-background overflow-x-auto scrollbar-hide">
-        <div className="flex h-14">
-          {items.slice(0, 5).map((it) => {
+        <div className="flex h-16 min-w-max px-1">
+          {items.map((it) => {
             const Icon = it.icon;
             const a = active(it.to, it.exact);
+            const short: Record<string, string> = {
+              "Purchase Requests": "Requests",
+              "Quotations": "Quotes",
+            };
             return (
-              <Link key={it.to} to={it.to} className={`flex-1 min-w-[72px] flex flex-col items-center justify-center gap-0.5 text-[10px] ${a ? "text-primary" : "text-muted-foreground"}`}>
-                <Icon className="h-4 w-4" />
-                {it.label}
+              <Link
+                key={it.to}
+                to={it.to}
+                className={`flex flex-col items-center justify-center gap-0.5 px-4 min-w-[60px] text-[10px] ${a ? "text-primary" : "text-muted-foreground"}`}
+              >
+                <Icon className="h-[18px] w-[18px]" />
+                <span className="whitespace-nowrap">{short[it.label] ?? it.label}</span>
               </Link>
             );
           })}

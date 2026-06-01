@@ -86,10 +86,10 @@ function AdminWarehouse() {
             <thead className="bg-muted/40 text-xs uppercase text-muted-foreground">
               <tr>
                 <th className="text-left p-3">Package</th>
-                <th className="text-left p-3">Customer</th>
+                <th className="text-left p-3 hidden sm:table-cell">Customer</th>
                 <th className="text-left p-3">Status</th>
-                <th className="text-left p-3">Location</th>
-                <th className="text-right p-3">Arrived</th>
+                <th className="text-left p-3 hidden md:table-cell">Location</th>
+                <th className="text-right p-3 hidden sm:table-cell">Arrived</th>
               </tr>
             </thead>
             <tbody className="divide-y">
@@ -102,13 +102,14 @@ function AdminWarehouse() {
                   <td className="p-3">
                     <div className="font-mono text-xs">{p.id}</div>
                     <div className="text-xs text-muted-foreground mt-0.5 truncate max-w-[160px]">{p.product}</div>
+                    <div className="text-xs text-muted-foreground sm:hidden">{p.customer}</div>
                   </td>
-                  <td className="p-3">{p.customer}</td>
+                  <td className="p-3 hidden sm:table-cell">{p.customer}</td>
                   <td className="p-3">
                     <StatusBadge status={p.status} />
                   </td>
-                  <td className="p-3 text-xs text-muted-foreground">{p.location}</td>
-                  <td className="p-3 text-right text-xs text-muted-foreground">{p.arrived}</td>
+                  <td className="p-3 text-xs text-muted-foreground hidden md:table-cell">{p.location}</td>
+                  <td className="p-3 text-right text-xs text-muted-foreground hidden sm:table-cell">{p.arrived}</td>
                 </tr>
               ))}
             </tbody>

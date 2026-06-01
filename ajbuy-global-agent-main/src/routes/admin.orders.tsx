@@ -55,21 +55,24 @@ function AdminOrders() {
           <thead className="bg-muted/40 text-xs uppercase text-muted-foreground">
             <tr>
               <th className="text-left p-3">Order</th>
-              <th className="text-left p-3">Customer</th>
+              <th className="text-left p-3 hidden sm:table-cell">Customer</th>
               <th className="text-left p-3">Status</th>
               <th className="text-right p-3">Amount</th>
-              <th className="text-right p-3">Date</th>
+              <th className="text-right p-3 hidden md:table-cell">Date</th>
               <th className="text-right p-3">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y">
             {filtered.map((o) => (
               <tr key={o.id} className="hover:bg-muted/30">
-                <td className="p-3 font-mono text-xs">{o.id}</td>
-                <td className="p-3">{o.customer}</td>
+                <td className="p-3">
+                  <div className="font-mono text-xs">{o.id}</div>
+                  <div className="text-xs text-muted-foreground sm:hidden">{o.customer}</div>
+                </td>
+                <td className="p-3 hidden sm:table-cell">{o.customer}</td>
                 <td className="p-3"><StatusBadge status={o.status} /></td>
                 <td className="p-3 text-right">${o.amount.toFixed(2)}</td>
-                <td className="p-3 text-right text-muted-foreground">{o.date}</td>
+                <td className="p-3 text-right text-muted-foreground hidden md:table-cell">{o.date}</td>
                 <td className="p-3 text-right text-xs">
                   <Link to="/admin/orders/$id" params={{ id: o.id }} className="text-primary hover:underline">View</Link>
                 </td>

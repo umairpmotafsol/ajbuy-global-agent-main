@@ -68,10 +68,10 @@ function AdminQuotations() {
             <thead className="bg-muted/40 text-xs uppercase text-muted-foreground">
               <tr>
                 <th className="text-left p-3">Quote</th>
-                <th className="text-left p-3">Customer</th>
+                <th className="text-left p-3 hidden sm:table-cell">Customer</th>
                 <th className="text-left p-3">Status</th>
                 <th className="text-right p-3">Amount</th>
-                <th className="text-right p-3">Expires</th>
+                <th className="text-right p-3 hidden md:table-cell">Expires</th>
               </tr>
             </thead>
             <tbody className="divide-y">
@@ -84,13 +84,14 @@ function AdminQuotations() {
                   <td className="p-3">
                     <div className="font-mono text-xs">{q.id}</div>
                     <div className="text-xs text-muted-foreground mt-0.5">{q.requestId}</div>
+                    <div className="text-xs text-muted-foreground sm:hidden">{q.customer}</div>
                   </td>
-                  <td className="p-3">{q.customer}</td>
+                  <td className="p-3 hidden sm:table-cell">{q.customer}</td>
                   <td className="p-3">
                     <StatusBadge status={q.status} />
                   </td>
                   <td className="p-3 text-right font-medium">${q.amount.toFixed(2)}</td>
-                  <td className="p-3 text-right text-muted-foreground text-xs">{q.expires}</td>
+                  <td className="p-3 text-right text-muted-foreground text-xs hidden md:table-cell">{q.expires}</td>
                 </tr>
               ))}
             </tbody>
