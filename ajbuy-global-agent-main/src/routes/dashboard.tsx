@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { AppShell } from "@/components/ajbuy/AppShell";
 import { StatusBadge } from "@/components/ajbuy/StatusBadge";
 import { ProductPlaceholder } from "@/components/ajbuy/ProductPlaceholder";
+import { SearchBar } from "@/components/ajbuy/SearchBar";
 import { activeOrders, purchaseRequests, user } from "@/lib/mock-data";
 import { PackageSearch, Truck, Warehouse, ShieldCheck, Wallet, LifeBuoy, Gift, ChevronRight } from "lucide-react";
 
@@ -34,6 +35,15 @@ function Dashboard() {
             </div>
             <ChevronRight className="h-4 w-4 ml-2 text-muted-foreground" />
           </Link>
+        </div>
+
+        {/* Prominent search */}
+        <div className="rounded-2xl bg-gradient-to-br from-primary/8 via-primary/5 to-transparent border border-primary/20 p-5 md:p-6 space-y-3">
+          <div>
+            <p className="font-display text-lg">Find any product from China</p>
+            <p className="text-sm text-muted-foreground">Search by name or paste a Taobao / 1688 / Tmall link</p>
+          </div>
+          <SearchBar size="lg" />
         </div>
 
         {/* Quick actions */}

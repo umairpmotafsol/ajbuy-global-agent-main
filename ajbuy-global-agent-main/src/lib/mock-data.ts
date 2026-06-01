@@ -1,3 +1,41 @@
+export type SearchProduct = {
+  id: string;
+  title: string;
+  cn: string;
+  price: number;
+  oldPrice?: number;
+  rating: number;
+  sold: number;
+  platform: "Taobao" | "1688";
+  category: string;
+  location: string;
+};
+
+export const allProducts: SearchProduct[] = [
+  { id: "P-1001", title: "Wireless Earbuds Pro", cn: "无线蓝牙耳机 Pro", price: 10.8, oldPrice: 14.5, rating: 4.8, sold: 1284, platform: "Taobao", category: "Electronics", location: "Guangdong" },
+  { id: "P-1002", title: "Smart Watch Series 9", cn: "智能手表 S9", price: 24.6, rating: 4.7, sold: 942, platform: "1688", category: "Electronics", location: "Shenzhen" },
+  { id: "P-1003", title: "USB-C Fast Charger 65W", cn: "65W 快充充电器", price: 6.4, oldPrice: 9, rating: 4.9, sold: 5320, platform: "1688", category: "Electronics", location: "Dongguan" },
+  { id: "P-1004", title: "Mechanical Keyboard RGB", cn: "机械键盘 RGB", price: 32, rating: 4.6, sold: 410, platform: "Taobao", category: "Electronics", location: "Shenzhen" },
+  { id: "P-1005", title: "Cotton Oversized Hoodie", cn: "宽松卫衣", price: 12.2, rating: 4.7, sold: 2100, platform: "Taobao", category: "Clothing", location: "Hangzhou" },
+  { id: "P-1006", title: "Linen Summer Shirt", cn: "亚麻衬衫", price: 9.8, rating: 4.5, sold: 870, platform: "1688", category: "Clothing", location: "Guangzhou" },
+  { id: "P-1007", title: "Cargo Pants Streetwear", cn: "工装裤", price: 14.5, oldPrice: 18, rating: 4.6, sold: 1402, platform: "Taobao", category: "Clothing", location: "Hangzhou" },
+  { id: "P-1008", title: "Running Sneakers Mesh", cn: "运动跑鞋", price: 16.9, rating: 4.7, sold: 3100, platform: "1688", category: "Shoes", location: "Fujian" },
+  { id: "P-1009", title: "Leather Loafers", cn: "皮鞋乐福鞋", price: 28.4, rating: 4.5, sold: 220, platform: "Taobao", category: "Shoes", location: "Wenzhou" },
+  { id: "P-1010", title: "Leather Crossbody Bag", cn: "皮革斜挎包", price: 22, oldPrice: 29, rating: 4.8, sold: 980, platform: "Taobao", category: "Bags", location: "Guangzhou" },
+  { id: "P-1011", title: "Canvas Tote Bag", cn: "帆布包", price: 5.4, rating: 4.6, sold: 4200, platform: "1688", category: "Bags", location: "Hangzhou" },
+  { id: "P-1012", title: "Ceramic Vase Set (3pc)", cn: "陶瓷花瓶套装", price: 18, rating: 4.7, sold: 312, platform: "Taobao", category: "Home Decor", location: "Jingdezhen" },
+  { id: "P-1013", title: "LED Strip Lights 5m", cn: "LED 灯带 5米", price: 4.9, rating: 4.8, sold: 7600, platform: "1688", category: "Home Decor", location: "Zhongshan" },
+  { id: "P-1014", title: "Matte Lipstick Set", cn: "哑光口红套装", price: 7.2, rating: 4.6, sold: 1820, platform: "Taobao", category: "Beauty", location: "Shanghai" },
+  { id: "P-1015", title: "Jade Roller & Gua Sha", cn: "玉石滚轮刮痧板", price: 3.8, rating: 4.7, sold: 5400, platform: "1688", category: "Beauty", location: "Yiwu" },
+  { id: "P-1016", title: "Plush Bear Giant 80cm", cn: "毛绒熊", price: 19.5, rating: 4.9, sold: 640, platform: "Taobao", category: "Toys", location: "Yangzhou" },
+  { id: "P-1017", title: "Building Blocks 500pc", cn: "积木玩具", price: 11, rating: 4.5, sold: 1240, platform: "1688", category: "Toys", location: "Shantou" },
+  { id: "P-1018", title: "Yoga Mat Non-Slip", cn: "瑜伽垫", price: 8.4, rating: 4.7, sold: 2800, platform: "1688", category: "Sports", location: "Ningbo" },
+  { id: "P-1019", title: "Adjustable Dumbbells Pair", cn: "可调哑铃", price: 42, rating: 4.6, sold: 380, platform: "Taobao", category: "Sports", location: "Qingdao" },
+  { id: "P-1020", title: "Cycling Jersey Pro", cn: "骑行服", price: 15.8, rating: 4.5, sold: 510, platform: "1688", category: "Sports", location: "Tianjin" },
+];
+
+export const recentSearches = ["Wireless Earbuds", "Cotton Hoodie", "Leather Bag", "Yoga Mat"];
+
 export const user = {
   name: "Ahmed Al-Rashidi",
   email: "ahmed@example.com",
