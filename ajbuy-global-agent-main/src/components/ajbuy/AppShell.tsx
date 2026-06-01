@@ -1,7 +1,10 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Home, PackageSearch, ListOrdered, Warehouse, User, Bell, Globe, Wallet, LifeBuoy, Gift, Truck, Search } from "lucide-react";
+import { Home, PackageSearch, ListOrdered, Warehouse, User, Bell, Globe, Wallet, LifeBuoy, Gift, Truck, Search, ShoppingCart } from "lucide-react";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
+import { CartDrawer } from "./CartDrawer";
+import { Footer } from "./Footer";
+import { useCart } from "@/context/CartContext";
 import { ReactNode } from "react";
 
 const navItems = [
@@ -19,12 +22,13 @@ const sideExtras = [
   { to: "/support", label: "Support", icon: LifeBuoy },
 ];
 
-export function AppShell({ children }: { children: ReactNode }) {
+export function AppShell({ children }: Readonly<{ children: ReactNode }>) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const isActive = (to: string) => pathname === to || (to !== "/dashboard" && pathname.startsWith(to));
+  const { count, setOpen } = useCart();
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       {/* Top header */}
       <header className="sticky top-0 z-40 bg-background/95 backdrop-blur border-b">
         <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4">
@@ -37,6 +41,19 @@ export function AppShell({ children }: { children: ReactNode }) {
               <Globe className="h-4 w-4" />
             </button>
             <ThemeToggle />
+            {/* Cart */}
+            <button
+              onClick={() => setOpen(true)}
+              className="relative h-9 w-9 inline-flex items-center justify-center rounded-full hover:bg-muted"
+              aria-label="Cart"
+            >
+              <ShoppingCart className="h-4 w-4" />
+              {count > 0 && (
+                <span className="absolute top-1 right-1 h-4 w-4 rounded-full bg-primary text-[10px] text-primary-foreground flex items-center justify-center font-medium">
+                  {count > 9 ? "9+" : count}
+                </span>
+              )}
+            </button>
             <button className="relative h-9 w-9 inline-flex items-center justify-center rounded-full hover:bg-muted" aria-label="Notifications">
               <Bell className="h-4 w-4" />
               <span className="absolute top-1 right-1 h-4 w-4 rounded-full bg-primary text-[10px] text-primary-foreground flex items-center justify-center">3</span>
@@ -46,7 +63,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
       </header>
 
-      <div className="mx-auto flex max-w-7xl">
+      <div className="mx-auto flex max-w-7xl w-full flex-1">
         {/* Desktop sidebar */}
         <aside className="hidden lg:flex sticky top-14 h-[calc(100vh-3.5rem)] w-60 shrink-0 flex-col border-r p-3 gap-1">
           {navItems.map((item) => {
@@ -93,6 +110,11 @@ export function AppShell({ children }: { children: ReactNode }) {
         <main className="flex-1 min-w-0 pb-24 lg:pb-8">{children}</main>
       </div>
 
+      {/* Footer — hidden on mobile where bottom nav takes over */}
+      <div className="hidden lg:block">
+        <Footer />
+      </div>
+
       {/* Mobile bottom nav */}
       <nav className="lg:hidden fixed bottom-0 inset-x-0 z-40 border-t bg-background/95 backdrop-blur">
         <div className="grid grid-cols-5 h-16">
@@ -115,6 +137,9 @@ export function AppShell({ children }: { children: ReactNode }) {
           })}
         </div>
       </nav>
+
+      {/* Cart drawer */}
+      <CartDrawer />
     </div>
   );
 }

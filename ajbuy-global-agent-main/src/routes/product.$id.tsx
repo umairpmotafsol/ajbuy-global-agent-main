@@ -1,8 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AppShell } from "@/components/ajbuy/AppShell";
 import { ProductPlaceholder } from "@/components/ajbuy/ProductPlaceholder";
-import { ChevronLeft, Star, Heart, Share2, Shield, Truck, RotateCcw, Minus, Plus, MapPin } from "lucide-react";
+import { ChevronLeft, Star, Heart, Share2, Shield, Truck, RotateCcw, Minus, Plus, MapPin, ShoppingCart, Check } from "lucide-react";
+
 import { useState } from "react";
+import { useCart } from "@/context/CartContext";
+import { allProducts } from "@/lib/mock-data";
 
 export const Route = createFileRoute("/product/$id")({ component: ProductDetail });
 
@@ -25,11 +28,33 @@ const reviews = [
 
 function ProductDetail() {
   const { id } = Route.useParams();
+  const { addItem } = useCart();
+  const product = allProducts.find((p) => p.id === id);
   const [color, setColor] = useState("Black");
   const [size, setSize] = useState("Standard");
   const [qty, setQty] = useState(1);
   const [tab, setTab] = useState<"description" | "specs" | "reviews">("description");
   const [mainImg, setMainImg] = useState(0);
+  const [added, setAdded] = useState(false);
+
+  const categoryEmoji: Record<string, string> = {
+    Electronics: "📱", Clothing: "👕", Shoes: "👟", Bags: "👜",
+    "Home Decor": "🏠", Beauty: "💄", Toys: "🧸", Sports: "⚽",
+  };
+
+  function handleAddToCart() {
+    addItem({
+      id,
+      title: product?.title ?? id,
+      price: product?.price ?? 10.8,
+      qty,
+      color,
+      size,
+      emoji: product ? (categoryEmoji[product.category] ?? "📦") : "📦",
+    });
+    setAdded(true);
+    setTimeout(() => setAdded(false), 2000);
+  }
 
   return (
     <AppShell>
@@ -43,8 +68,8 @@ function ProductDetail() {
           <div>
             <ProductPlaceholder className="aspect-square rounded-2xl" />
             <div className="grid grid-cols-5 gap-2 mt-2">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <button key={i} onClick={() => setMainImg(i)} className={`aspect-square rounded-lg overflow-hidden border-2 ${mainImg === i ? "border-primary" : "border-transparent"}`}>
+              {["t0","t1","t2","t3","t4"].map((key, i) => (
+                <button key={key} onClick={() => setMainImg(i)} className={`aspect-square rounded-lg overflow-hidden border-2 ${mainImg === i ? "border-primary" : "border-transparent"}`}>
                   <ProductPlaceholder className="w-full h-full" />
                 </button>
               ))}
@@ -62,7 +87,7 @@ function ProductDetail() {
 
             <div className="mt-3 flex items-center gap-3 text-sm">
               <div className="flex items-center gap-0.5 text-amber-500">
-                {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}
+                {["s1","s2","s3","s4","s5"].map((k) => <Star key={k} className="h-4 w-4 fill-current" />)}
               </div>
               <span className="text-muted-foreground">4.8 · 1,284 sold</span>
             </div>
@@ -108,9 +133,18 @@ function ProductDetail() {
               <span className="text-xs text-muted-foreground">MOQ: 1</span>
             </div>
 
-            <div className="mt-6 grid grid-cols-2 gap-2">
-              <Link to="/import" className="rounded-full border-2 border-primary text-primary py-3 font-medium text-center hover:bg-primary/5">Save to Drafts</Link>
-              <Link to="/requests" className="rounded-full bg-primary text-primary-foreground py-3 font-medium text-center hover:bg-primary-deep">Request to Buy</Link>
+            <div className="mt-6 space-y-2">
+              <button
+                onClick={handleAddToCart}
+                className={`w-full rounded-full py-3 font-medium inline-flex items-center justify-center gap-2 transition-all ${
+                  added
+                    ? "bg-green-600 text-white"
+                    : "bg-primary text-primary-foreground hover:bg-primary-deep"
+                }`}
+              >
+                {added ? <><Check className="h-4 w-4" /> Added to cart!</> : <><ShoppingCart className="h-4 w-4" /> Add to Cart</>}
+              </button>
+              <Link to="/requests" className="w-full rounded-full border-2 border-foreground/20 text-foreground py-2.5 text-sm font-medium text-center hover:bg-muted inline-block">Request to Buy</Link>
             </div>
             <div className="mt-2 flex gap-2">
               <button className="flex-1 rounded-full border py-2 text-xs inline-flex items-center justify-center gap-1.5 hover:bg-muted"><Heart className="h-3.5 w-3.5" /> Wishlist</button>
@@ -170,14 +204,14 @@ function ProductDetail() {
             )}
             {tab === "reviews" && (
               <ul className="space-y-4">
-                {reviews.map((r, i) => (
-                  <li key={i} className="rounded-2xl border bg-card p-4">
+                {reviews.map((r) => (
+                  <li key={r.name} className="rounded-2xl border bg-card p-4">
                     <div className="flex items-center justify-between">
                       <div className="font-medium text-sm">{r.name}</div>
                       <div className="text-xs text-muted-foreground">{r.date}</div>
                     </div>
                     <div className="flex gap-0.5 text-amber-500 mt-1">
-                      {Array.from({ length: r.rating }).map((_, j) => <Star key={j} className="h-3.5 w-3.5 fill-current" />)}
+                      {Array.from({ length: r.rating }, (_, j) => <Star key={`${r.name}-star-${j}`} className="h-3.5 w-3.5 fill-current" />)}
                     </div>
                     <p className="text-sm mt-2">{r.text}</p>
                   </li>
