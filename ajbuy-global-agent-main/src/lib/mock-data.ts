@@ -3,7 +3,7 @@ export const user = {
   email: "ahmed@example.com",
   country: "UAE",
   currency: "AED",
-  wallet: 240.0,
+  wallet: 240,
   bonus: 12.5,
   avatar: "AA",
 };
@@ -33,7 +33,7 @@ export type FeaturedProduct = {
 export const featuredProducts: FeaturedProduct[] = [
   { id: "P-1001", title: "Wireless Earbuds Pro",   price: 10.8, oldPrice: 14.5, shipping: "Free shipping", platform: "Taobao", category: "Electronics", emoji: "🎧" },
   { id: "P-1002", title: "Smart Watch Series 9",    price: 24.6,                shipping: "Ships in 3d",   platform: "1688",   category: "Electronics", emoji: "⌚" },
-  { id: "P-1004", title: "Gaming Keyboard RGB",     price: 32.0, oldPrice: 39.0, shipping: "Free shipping", platform: "Taobao", category: "Electronics", emoji: "⌨️" },
+  { id: "P-1004", title: "Gaming Keyboard RGB",     price: 32,   oldPrice: 39,  shipping: "Free shipping", platform: "Taobao", category: "Electronics", emoji: "⌨️" },
   { id: "P-1030", title: "LED Desk Lamp",           price:  8.4,                shipping: "Ships in 2d",   platform: "1688",   category: "Home Decor",  emoji: "💡" },
   { id: "P-1031", title: "Portable Blender",        price: 13.9, oldPrice: 18.5, shipping: "Free shipping", platform: "Taobao", category: "Home Decor",  emoji: "🥤" },
   { id: "P-1032", title: "Phone Accessories Kit",   price:  6.2,                shipping: "Ships in 1d",   platform: "1688",   category: "Electronics", emoji: "📱" },
@@ -61,7 +61,7 @@ export const activeOrders = [
 export const purchaseRequests = [
   { id: "REQ-00451", title: "Wireless Earbuds Pro — Black", qty: 2, date: "May 18, 2026", status: "Pending Quote", price: null },
   { id: "REQ-00449", title: "Leather Crossbody Bag — Tan", qty: 1, date: "May 16, 2026", status: "Awaiting Payment", price: 59.5 },
-  { id: "REQ-00441", title: "Smart Watch Series 9 — Silver", qty: 1, date: "May 12, 2026", status: "Processing", price: 142.0 },
+  { id: "REQ-00441", title: "Smart Watch Series 9 — Silver", qty: 1, date: "May 12, 2026", status: "Processing", price: 142 },
   { id: "REQ-00432", title: "Cotton Hoodie — Beige (M)", qty: 3, date: "May 08, 2026", status: "Completed", price: 78.2 },
   { id: "REQ-00427", title: "Ceramic Vase Set", qty: 1, date: "May 03, 2026", status: "Rejected", price: null },
 ];
@@ -76,7 +76,7 @@ export const shippingMethods = [
   { name: "Air Express", carrier: "DHL", price: 28.5, eta: "4–6 business days", speed: 95 },
   { name: "Standard Air", carrier: "EMS", price: 18.5, eta: "7–12 business days", speed: 70 },
   { name: "Sea Freight", carrier: "Maersk", price: 9.2, eta: "30–45 business days", speed: 25 },
-  { name: "Economy", carrier: "Yanwen", price: 12.0, eta: "15–25 business days", speed: 45 },
+  { name: "Economy", carrier: "Yanwen", price: 12, eta: "15–25 business days", speed: 45 },
 ];
 
 export const trackingEvents = [
@@ -88,21 +88,21 @@ export const trackingEvents = [
 ];
 
 export const transactions = [
-  { id: 1, type: "credit", desc: "Top-up via Stripe", date: "May 18", amount: 100.0 },
+  { id: 1, type: "credit", desc: "Top-up via Stripe", date: "May 18", amount: 100 },
   { id: 2, type: "debit", desc: "Order REQ-00449 payment", date: "May 16", amount: -59.5 },
-  { id: 3, type: "credit", desc: "Referral bonus — Sara K.", date: "May 14", amount: 5.0 },
-  { id: 4, type: "debit", desc: "Order REQ-00441 payment", date: "May 12", amount: -142.0 },
-  { id: 5, type: "credit", desc: "Refund — REQ-00427", date: "May 09", amount: 24.0 },
+  { id: 3, type: "credit", desc: "Referral bonus — Sara K.", date: "May 14", amount: 5 },
+  { id: 4, type: "debit", desc: "Order REQ-00441 payment", date: "May 12", amount: -142 },
+  { id: 5, type: "credit", desc: "Refund — REQ-00427", date: "May 09", amount: 24 },
 ];
 
 export const referralStats = { clicks: 142, signups: 18, conversions: 7, earned: 34.5 };
 
 export const referralEarnings = [
-  { ref: "sara.k@…", date: "May 14", value: 120.0, commission: 6.0, status: "Paid" },
-  { ref: "liam.b@…", date: "May 10", value: 240.0, commission: 12.0, status: "Paid" },
-  { ref: "marie.l@…", date: "May 08", value: 90.0, commission: 4.5, status: "Pending" },
-  { ref: "omar.n@…", date: "May 05", value: 180.0, commission: 9.0, status: "Pending" },
-  { ref: "jin.h@…", date: "May 01", value: 60.0, commission: 3.0, status: "Paid" },
+  { ref: "sara.k@…", date: "May 14", value: 120, commission: 6, status: "Paid" },
+  { ref: "liam.b@…", date: "May 10", value: 240, commission: 12, status: "Paid" },
+  { ref: "marie.l@…", date: "May 08", value: 90, commission: 4.5, status: "Pending" },
+  { ref: "omar.n@…", date: "May 05", value: 180, commission: 9, status: "Pending" },
+  { ref: "jin.h@…", date: "May 01", value: 60, commission: 3, status: "Paid" },
 ];
 
 export const tickets = [
@@ -125,17 +125,45 @@ export const adminRevenueSeries = [
 ];
 
 export const adminRecentOrders = [
-  { id: "AJ-10293", customer: "Ahmed Al-Rashidi", status: "Shipped", amount: 142.0, date: "May 20" },
+  { id: "AJ-10293", customer: "Ahmed Al-Rashidi", status: "Shipped", amount: 142, date: "May 20" },
   { id: "AJ-10288", customer: "Sara K.", status: "Processing", amount: 59.5, date: "May 19" },
-  { id: "AJ-10277", customer: "Liam B.", status: "Completed", amount: 312.0, date: "May 18" },
+  { id: "AJ-10277", customer: "Liam B.", status: "Completed", amount: 312, date: "May 18" },
   { id: "AJ-10269", customer: "Marie L.", status: "Pending Quote", amount: 0, date: "May 17" },
   { id: "AJ-10258", customer: "Omar N.", status: "Shipped", amount: 88.4, date: "May 16" },
 ];
 
+export const adminWarehousePackages = [
+  { id: "WH-4421", customer: "Ahmed Al-Rashidi", orderId: "AJ-10293", product: "Wireless Earbuds Pro", arrived: "May 15", dims: "32×24×18 cm", weight: "1.2 kg", status: "Awaiting QC", location: "Bay A-12" },
+  { id: "WH-4418", customer: "Sara K.", orderId: "AJ-10288", product: "Leather Crossbody Bag", arrived: "May 14", dims: "20×15×10 cm", weight: "0.6 kg", status: "QC Complete", location: "Bay B-04" },
+  { id: "WH-4402", customer: "Ahmed Al-Rashidi", orderId: "AJ-10277", product: "Smart Watch Series 9", arrived: "May 10", dims: "45×30×25 cm", weight: "3.4 kg", status: "Ready to Ship", location: "Bay C-07" },
+  { id: "WH-4395", customer: "Liam B.", orderId: "AJ-10258", product: "Gaming Keyboard RGB", arrived: "May 09", dims: "50×20×10 cm", weight: "1.8 kg", status: "Awaiting QC", location: "Bay A-03" },
+  { id: "WH-4381", customer: "Marie L.", orderId: "AJ-10241", product: "LED Desk Lamp", arrived: "May 07", dims: "60×15×15 cm", weight: "2.1 kg", status: "Ready to Ship", location: "Bay C-11" },
+  { id: "WH-4370", customer: "Omar N.", orderId: "AJ-10233", product: "Portable Blender", arrived: "May 05", dims: "25×12×12 cm", weight: "0.9 kg", status: "QC Issue", location: "Bay D-02" },
+  { id: "WH-4358", customer: "Jin H.", orderId: "AJ-10219", product: "Phone Accessories Kit", arrived: "May 03", dims: "18×12×8 cm", weight: "0.4 kg", status: "Shipped", location: "—" },
+];
+
+export const warehouseStats = {
+  total: 18,
+  awaitingQC: 5,
+  qcComplete: 4,
+  readyToShip: 6,
+  issues: 2,
+  shipped: 1,
+};
+
+export const adminQuotations = [
+  { id: "QT-00341", requestId: "REQ-00451", customer: "Ahmed Al-Rashidi", product: "Wireless Earbuds Pro — Black ×2", amount: 59.5, status: "Sent", created: "May 18", expires: "May 19" },
+  { id: "QT-00339", requestId: "REQ-00449", customer: "Sara K.", product: "Leather Crossbody Bag — Tan ×1", amount: 87.2, status: "Accepted", created: "May 16", expires: "May 17" },
+  { id: "QT-00335", requestId: "REQ-00441", customer: "Liam B.", product: "Smart Watch Series 9 — Silver ×1", amount: 142, status: "Accepted", created: "May 12", expires: "May 13" },
+  { id: "QT-00330", requestId: "REQ-00432", customer: "Marie L.", product: "Cotton Hoodie — Beige (M) ×3", amount: 78.2, status: "Expired", created: "May 08", expires: "May 09" },
+  { id: "QT-00324", requestId: "REQ-00427", customer: "Omar N.", product: "Ceramic Vase Set ×1", amount: 45, status: "Rejected", created: "May 03", expires: "May 04" },
+  { id: "QT-00318", requestId: "REQ-00418", customer: "Jin H.", product: "Gaming Keyboard RGB ×1", amount: 95.8, status: "Draft", created: "May 21", expires: "May 23" },
+];
+
 export const adminUsers = [
-  { name: "Ahmed Al-Rashidi", email: "ahmed@…", country: "UAE", kyc: "Verified", wallet: 240.0 },
+  { name: "Ahmed Al-Rashidi", email: "ahmed@…", country: "UAE", kyc: "Verified", wallet: 240 },
   { name: "Sara K.", email: "sara@…", country: "UAE", kyc: "Verified", wallet: 86.2 },
   { name: "Liam B.", email: "liam@…", country: "UK", kyc: "Pending", wallet: 0 },
   { name: "Marie L.", email: "marie@…", country: "FR", kyc: "Verified", wallet: 412.7 },
-  { name: "Omar N.", email: "omar@…", country: "SA", kyc: "Verified", wallet: 55.0 },
+  { name: "Omar N.", email: "omar@…", country: "SA", kyc: "Verified", wallet: 55 },
 ];

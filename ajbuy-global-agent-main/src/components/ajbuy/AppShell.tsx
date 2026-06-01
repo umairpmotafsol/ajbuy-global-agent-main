@@ -9,7 +9,7 @@ const navItems = [
   { to: "/import", label: "Import", icon: PackageSearch },
   { to: "/requests", label: "Orders", icon: ListOrdered },
   { to: "/warehouse", label: "Warehouse", icon: Warehouse },
-  { to: "/wallet", label: "Account", icon: User },
+  { to: "/account", label: "Account", icon: User },
 ];
 
 const sideExtras = [
