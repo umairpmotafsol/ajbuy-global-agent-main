@@ -26,11 +26,15 @@ import { Route as AffiliateRouteImport } from './routes/affiliate'
 import { Route as AccountRouteImport } from './routes/account'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as RequestsIndexRouteImport } from './routes/requests.index'
+import { Route as ParcelsIndexRouteImport } from './routes/parcels.index'
+import { Route as OrdersIndexRouteImport } from './routes/orders.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as TrackingIdRouteImport } from './routes/tracking.$id'
 import { Route as ShippingIdRouteImport } from './routes/shipping.$id'
 import { Route as RequestsIdRouteImport } from './routes/requests.$id'
 import { Route as ProductIdRouteImport } from './routes/product.$id'
+import { Route as ParcelsIdRouteImport } from './routes/parcels.$id'
+import { Route as OrdersIdRouteImport } from './routes/orders.$id'
 import { Route as AdminWarehouseRouteImport } from './routes/admin.warehouse'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
@@ -126,6 +130,16 @@ const RequestsIndexRoute = RequestsIndexRouteImport.update({
   path: '/requests/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ParcelsIndexRoute = ParcelsIndexRouteImport.update({
+  id: '/parcels/',
+  path: '/parcels/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrdersIndexRoute = OrdersIndexRouteImport.update({
+  id: '/orders/',
+  path: '/orders/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/admin/',
   path: '/admin/',
@@ -149,6 +163,16 @@ const RequestsIdRoute = RequestsIdRouteImport.update({
 const ProductIdRoute = ProductIdRouteImport.update({
   id: '/product/$id',
   path: '/product/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ParcelsIdRoute = ParcelsIdRouteImport.update({
+  id: '/parcels/$id',
+  path: '/parcels/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrdersIdRoute = OrdersIdRouteImport.update({
+  id: '/orders/$id',
+  path: '/orders/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminWarehouseRoute = AdminWarehouseRouteImport.update({
@@ -221,11 +245,15 @@ export interface FileRoutesByFullPath {
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/admin/warehouse': typeof AdminWarehouseRoute
+  '/orders/$id': typeof OrdersIdRoute
+  '/parcels/$id': typeof ParcelsIdRoute
   '/product/$id': typeof ProductIdRoute
   '/requests/$id': typeof RequestsIdRoute
   '/shipping/$id': typeof ShippingIdRoute
   '/tracking/$id': typeof TrackingIdRoute
   '/admin/': typeof AdminIndexRoute
+  '/orders/': typeof OrdersIndexRoute
+  '/parcels/': typeof ParcelsIndexRoute
   '/requests/': typeof RequestsIndexRoute
   '/admin/orders/$id': typeof AdminOrdersIdRoute
   '/warehouse/$id/qc': typeof WarehouseIdQcRoute
@@ -254,11 +282,15 @@ export interface FileRoutesByTo {
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/admin/warehouse': typeof AdminWarehouseRoute
+  '/orders/$id': typeof OrdersIdRoute
+  '/parcels/$id': typeof ParcelsIdRoute
   '/product/$id': typeof ProductIdRoute
   '/requests/$id': typeof RequestsIdRoute
   '/shipping/$id': typeof ShippingIdRoute
   '/tracking/$id': typeof TrackingIdRoute
   '/admin': typeof AdminIndexRoute
+  '/orders': typeof OrdersIndexRoute
+  '/parcels': typeof ParcelsIndexRoute
   '/requests': typeof RequestsIndexRoute
   '/admin/orders/$id': typeof AdminOrdersIdRoute
   '/warehouse/$id/qc': typeof WarehouseIdQcRoute
@@ -288,11 +320,15 @@ export interface FileRoutesById {
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/admin/warehouse': typeof AdminWarehouseRoute
+  '/orders/$id': typeof OrdersIdRoute
+  '/parcels/$id': typeof ParcelsIdRoute
   '/product/$id': typeof ProductIdRoute
   '/requests/$id': typeof RequestsIdRoute
   '/shipping/$id': typeof ShippingIdRoute
   '/tracking/$id': typeof TrackingIdRoute
   '/admin/': typeof AdminIndexRoute
+  '/orders/': typeof OrdersIndexRoute
+  '/parcels/': typeof ParcelsIndexRoute
   '/requests/': typeof RequestsIndexRoute
   '/admin/orders/$id': typeof AdminOrdersIdRoute
   '/warehouse/$id/qc': typeof WarehouseIdQcRoute
@@ -323,11 +359,15 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/admin/users'
     | '/admin/warehouse'
+    | '/orders/$id'
+    | '/parcels/$id'
     | '/product/$id'
     | '/requests/$id'
     | '/shipping/$id'
     | '/tracking/$id'
     | '/admin/'
+    | '/orders/'
+    | '/parcels/'
     | '/requests/'
     | '/admin/orders/$id'
     | '/warehouse/$id/qc'
@@ -356,11 +396,15 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/admin/users'
     | '/admin/warehouse'
+    | '/orders/$id'
+    | '/parcels/$id'
     | '/product/$id'
     | '/requests/$id'
     | '/shipping/$id'
     | '/tracking/$id'
     | '/admin'
+    | '/orders'
+    | '/parcels'
     | '/requests'
     | '/admin/orders/$id'
     | '/warehouse/$id/qc'
@@ -389,11 +433,15 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/admin/users'
     | '/admin/warehouse'
+    | '/orders/$id'
+    | '/parcels/$id'
     | '/product/$id'
     | '/requests/$id'
     | '/shipping/$id'
     | '/tracking/$id'
     | '/admin/'
+    | '/orders/'
+    | '/parcels/'
     | '/requests/'
     | '/admin/orders/$id'
     | '/warehouse/$id/qc'
@@ -423,11 +471,15 @@ export interface RootRouteChildren {
   AdminSettingsRoute: typeof AdminSettingsRoute
   AdminUsersRoute: typeof AdminUsersRoute
   AdminWarehouseRoute: typeof AdminWarehouseRoute
+  OrdersIdRoute: typeof OrdersIdRoute
+  ParcelsIdRoute: typeof ParcelsIdRoute
   ProductIdRoute: typeof ProductIdRoute
   RequestsIdRoute: typeof RequestsIdRoute
   ShippingIdRoute: typeof ShippingIdRoute
   TrackingIdRoute: typeof TrackingIdRoute
   AdminIndexRoute: typeof AdminIndexRoute
+  OrdersIndexRoute: typeof OrdersIndexRoute
+  ParcelsIndexRoute: typeof ParcelsIndexRoute
   RequestsIndexRoute: typeof RequestsIndexRoute
 }
 
@@ -552,6 +604,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RequestsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/parcels/': {
+      id: '/parcels/'
+      path: '/parcels'
+      fullPath: '/parcels/'
+      preLoaderRoute: typeof ParcelsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/orders/': {
+      id: '/orders/'
+      path: '/orders'
+      fullPath: '/orders/'
+      preLoaderRoute: typeof OrdersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/': {
       id: '/admin/'
       path: '/admin'
@@ -585,6 +651,20 @@ declare module '@tanstack/react-router' {
       path: '/product/$id'
       fullPath: '/product/$id'
       preLoaderRoute: typeof ProductIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/parcels/$id': {
+      id: '/parcels/$id'
+      path: '/parcels/$id'
+      fullPath: '/parcels/$id'
+      preLoaderRoute: typeof ParcelsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/orders/$id': {
+      id: '/orders/$id'
+      path: '/orders/$id'
+      fullPath: '/orders/$id'
+      preLoaderRoute: typeof OrdersIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/warehouse': {
@@ -701,11 +781,15 @@ const rootRouteChildren: RootRouteChildren = {
   AdminSettingsRoute: AdminSettingsRoute,
   AdminUsersRoute: AdminUsersRoute,
   AdminWarehouseRoute: AdminWarehouseRoute,
+  OrdersIdRoute: OrdersIdRoute,
+  ParcelsIdRoute: ParcelsIdRoute,
   ProductIdRoute: ProductIdRoute,
   RequestsIdRoute: RequestsIdRoute,
   ShippingIdRoute: ShippingIdRoute,
   TrackingIdRoute: TrackingIdRoute,
   AdminIndexRoute: AdminIndexRoute,
+  OrdersIndexRoute: OrdersIndexRoute,
+  ParcelsIndexRoute: ParcelsIndexRoute,
   RequestsIndexRoute: RequestsIndexRoute,
 }
 export const routeTree = rootRouteImport

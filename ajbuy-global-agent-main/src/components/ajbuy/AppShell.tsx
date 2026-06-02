@@ -11,7 +11,7 @@ import { ReactNode } from "react";
 const navItems = [
   { to: "/dashboard", label: "Home", icon: Home },
   { to: "/import", label: "Import", icon: PackageSearch },
-  { to: "/requests", label: "Orders", icon: ListOrdered },
+  { to: "/orders", label: "Orders", icon: ListOrdered },
   { to: "/warehouse", label: "Warehouse", icon: Warehouse },
   { to: "/account", label: "Account", icon: User },
 ];
@@ -19,7 +19,7 @@ const navItems = [
 const sideExtras = [
   { to: "/cart", label: "Cart", icon: ShoppingCart },
   { to: "/favorites", label: "Favorites", icon: Heart },
-  { to: "/tracking/AJ-10277", label: "Tracking", icon: Truck },
+  { to: "/parcels", label: "Parcel", icon: Truck },
   { to: "/wallet", label: "Wallet", icon: Wallet },
   { to: "/affiliate", label: "Affiliate", icon: Gift },
   { to: "/support", label: "Support", icon: LifeBuoy },

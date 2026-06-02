@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { AppShell } from "@/components/ajbuy/AppShell";
 import { StatusBadge } from "@/components/ajbuy/StatusBadge";
 import { packages } from "@/lib/mock-data";
@@ -8,6 +8,7 @@ import {
   Weight, Ruler, ChevronRight, Box, AlertTriangle,
   PackageCheck, Wrench, X,
 } from "lucide-react";
+import { ShippingAddressModal, type ShippingAddress } from "@/components/ajbuy/ShippingAddressModal";
 
 export const Route = createFileRoute("/warehouse")({ component: WarehousePage });
 
@@ -21,12 +22,14 @@ const tabs = ["All", "Awaiting QC", "QC Complete", "Ready to Ship"] as const;
 type Tab = typeof tabs[number];
 
 function WarehousePage() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<Tab>("All");
   const [expanded, setExpanded] = useState<string | null>(null);
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [modModal, setModModal] = useState(false);
   const [modPkg, setModPkg] = useState<string | null>(null);
   const [mods, setMods] = useState({ fragile: false, repack: false, removeBox: false, bubbleWrap: false });
+  const [showAddrModal, setShowAddrModal] = useState(false);
 
   const toggle = (id: string) => setSelected((s) => {
     const n = new Set(s); n.has(id) ? n.delete(id) : n.add(id); return n;
@@ -225,10 +228,12 @@ function WarehousePage() {
                   </div>
                 ))}
               </div>
-              <Link to="/shipping/$id" params={{ id: "consol-1" }}
+              <button
+                type="button"
+                onClick={() => setShowAddrModal(true)}
                 className="block w-full rounded-full bg-primary text-primary-foreground py-2.5 text-sm font-semibold text-center hover:bg-primary-deep transition-colors">
-                Consolidate & Ship →
-              </Link>
+                Consolidate &amp; Ship →
+              </button>
             </div>
           </div>
         )}
@@ -272,6 +277,17 @@ function WarehousePage() {
               </div>
             </div>
           </div>
+        )}
+
+        {/* Address selection modal */}
+        {showAddrModal && (
+          <ShippingAddressModal
+            onConfirm={(addr: ShippingAddress) => {
+              setShowAddrModal(false);
+              void navigate({ to: "/shipping/$id", params: { id: "consol-1" }, search: { addr: JSON.stringify(addr) } });
+            }}
+            onClose={() => setShowAddrModal(false)}
+          />
         )}
       </div>
     </AppShell>

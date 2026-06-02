@@ -71,15 +71,15 @@ function PaymentPage() {
               <Link to="/warehouse" className="rounded-full bg-primary text-primary-foreground px-8 py-3 text-sm font-medium hover:bg-primary-deep transition-colors">
                 Inspection &amp; Warehousing →
               </Link>
-              <Link to="/warehouse/WH-4421/qc" className="rounded-full border-2 border-primary text-primary px-8 py-3 text-sm font-medium hover:bg-primary/5 transition-colors">
+              <Link to="/warehouse/$id/qc" params={{ id: "WH-4421" }} className="rounded-full border-2 border-primary text-primary px-8 py-3 text-sm font-medium hover:bg-primary/5 transition-colors">
                 View QC Report
               </Link>
             </div>
             <div className="flex flex-col sm:flex-row gap-3">
-              <Link to="/shipping/consol-1" className="rounded-full border px-8 py-3 text-sm font-medium hover:bg-muted transition-colors">
+              <Link to="/shipping/$id" params={{ id: "consol-1" }} className="rounded-full border px-8 py-3 text-sm font-medium hover:bg-muted transition-colors">
                 Submit Parcels &amp; Pay Shipping
               </Link>
-              <Link to="/tracking/AJ-10277" className="rounded-full border px-8 py-3 text-sm font-medium hover:bg-muted transition-colors">
+              <Link to="/tracking/$id" params={{ id: "AJ-10277" }} className="rounded-full border px-8 py-3 text-sm font-medium hover:bg-muted transition-colors">
                 Wait for Receipt / Track
               </Link>
             </div>

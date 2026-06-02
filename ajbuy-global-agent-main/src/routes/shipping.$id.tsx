@@ -1,12 +1,15 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useSearch } from "@tanstack/react-router";
 import { AppShell } from "@/components/ajbuy/AppShell";
 import { shippingMethods } from "@/lib/mock-data";
 import { useState } from "react";
-import { ChevronLeft, Info } from "lucide-react";
+import { ChevronLeft, Info, MapPin } from "lucide-react";
+import type { ShippingAddress } from "@/components/ajbuy/ShippingAddressModal";
 
 export const Route = createFileRoute("/shipping/$id")({ component: Shipping });
 
 function Shipping() {
+  const search = useSearch({ from: "/shipping/$id" }) as { addr?: string };
+  const addr = search.addr ? (JSON.parse(search.addr) as ShippingAddress) : null;
   const [method, setMethod] = useState(shippingMethods[1].name);
   const [insurance, setInsurance] = useState(true);
   const [fragile, setFragile] = useState(false);
@@ -17,7 +20,23 @@ function Shipping() {
     <AppShell>
       <div className="p-4 md:p-6 max-w-4xl">
         <Link to="/warehouse" className="text-sm text-muted-foreground inline-flex items-center gap-1 hover:text-primary"><ChevronLeft className="h-4 w-4" /> Back</Link>
-        <h1 className="mt-3 font-display text-2xl md:text-3xl">Choose shipping</h1>
+
+        {/* Delivery address confirmation */}
+        {addr && (
+          <div className="mt-4 rounded-2xl border-2 border-primary/20 bg-primary/5 p-4 flex items-start gap-3">
+            <MapPin className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+            <div className="flex-1 min-w-0">
+              <p className="text-xs uppercase tracking-wider text-muted-foreground font-semibold">Delivery address</p>
+              <p className="font-medium text-sm mt-1">{addr.firstName} {addr.lastName}</p>
+              <p className="text-sm text-muted-foreground">{addr.houseNumber}, {addr.detailedAddress}</p>
+              <p className="text-sm text-muted-foreground">{addr.city}, {addr.province}, {addr.country} {addr.postcode}</p>
+              <p className="text-sm text-muted-foreground mt-1">{addr.phoneCode} {addr.phone}</p>
+            </div>
+            <Link to="/warehouse" className="text-xs text-primary hover:underline shrink-0">Change</Link>
+          </div>
+        )}
+
+        <h1 className="mt-5 font-display text-2xl md:text-3xl">Choose shipping</h1>
 
         <div className="grid lg:grid-cols-3 gap-6 mt-6">
           <div className="lg:col-span-2 space-y-3">
