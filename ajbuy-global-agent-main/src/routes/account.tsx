@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AppShell } from "@/components/ajbuy/AppShell";
 import { user } from "@/lib/mock-data";
 import { useState } from "react";
-import { User, Mail, Phone, Globe, Lock, Shield, Camera, Check, ChevronRight } from "lucide-react";
+import { User, Mail, Phone, Globe, Lock, Shield, Camera, Check, ChevronRight, MapPin } from "lucide-react";
 
 export const Route = createFileRoute("/account")({ component: AccountPage });
 
@@ -76,6 +76,9 @@ function ProfileTab() {
           <InputField label="Email address" defaultValue={user.email} icon={<Mail className="h-4 w-4" />} />
           <InputField label="Phone number" defaultValue="+971 50 *** **89" icon={<Phone className="h-4 w-4" />} />
           <InputField label="Country" defaultValue={user.country} icon={<Globe className="h-4 w-4" />} />
+          <div className="md:col-span-2">
+            <InputField label="Address" defaultValue="Dubai Marina, Dubai, UAE" icon={<MapPin className="h-4 w-4" />} />
+          </div>
         </div>
         <button className="rounded-full bg-primary text-primary-foreground px-5 py-2.5 text-sm font-medium hover:bg-primary-deep">
           Save changes

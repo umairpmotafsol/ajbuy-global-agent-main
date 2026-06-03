@@ -13,11 +13,10 @@ const navItems = [
   { to: "/import", label: "Import", icon: PackageSearch },
   { to: "/orders", label: "Orders", icon: ListOrdered },
   { to: "/warehouse", label: "Warehouse", icon: Warehouse },
-  { to: "/account", label: "Account", icon: User },
-  { to: "/parcels", label: "Parcel", icon: Truck },
 ];
 
 const sideExtras = [
+  { to: "/account", label: "Account", icon: User },
   { to: "/cart", label: "Cart", icon: ShoppingCart },
   { to: "/favorites", label: "Favorites", icon: Heart },
   { to: "/wallet", label: "Wallet", icon: Wallet },

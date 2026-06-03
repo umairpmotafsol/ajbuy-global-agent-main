@@ -62,7 +62,7 @@ function Dashboard() {
             {orderStats.map((s) => (
               <Link
                 key={s.label}
-                to="/requests"
+                to="/orders"
                 className="flex flex-col items-center justify-center py-5 px-2 hover:bg-muted/40 transition-colors text-center gap-1.5"
               >
                 <span className="font-display text-3xl leading-none">{s.value}</span>
@@ -76,7 +76,7 @@ function Dashboard() {
         <div className="rounded-2xl border bg-card shadow-card overflow-hidden">
           <div className="flex items-center justify-between px-5 py-4 border-b">
             <h2 className="font-display text-lg">My Orders</h2>
-            <Link to="/requests" className="text-xs text-primary hover:underline font-medium">View all</Link>
+            <Link to="/orders" className="text-xs text-primary hover:underline font-medium">View all</Link>
           </div>
 
           {purchaseRequests.length === 0 ? (

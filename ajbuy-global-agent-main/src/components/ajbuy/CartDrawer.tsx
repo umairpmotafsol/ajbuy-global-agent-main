@@ -108,7 +108,7 @@ export function CartDrawer() {
               Shipping and service fees added at checkout.
             </p>
             <Link
-              to="/requests"
+              to="/orders"
               onClick={() => setOpen(false)}
               className="w-full rounded-full bg-primary text-primary-foreground py-3 font-medium text-sm inline-flex items-center justify-center gap-2 hover:bg-primary-deep"
             >

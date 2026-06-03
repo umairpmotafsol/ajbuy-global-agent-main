@@ -99,7 +99,7 @@ function ImportPage() {
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <button className="rounded-full border-2 border-primary text-primary py-3 font-medium hover:bg-primary/5">Save as Draft</button>
-                <Link to="/requests" className="text-center rounded-full bg-primary text-primary-foreground py-3 font-medium hover:bg-primary-deep">Submit Request</Link>
+                <Link to="/orders" className="text-center rounded-full bg-primary text-primary-foreground py-3 font-medium hover:bg-primary-deep">Submit Request</Link>
               </div>
             </div>
           </div>

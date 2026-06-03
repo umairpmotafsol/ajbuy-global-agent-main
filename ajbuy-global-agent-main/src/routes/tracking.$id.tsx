@@ -20,7 +20,7 @@ function Tracking() {
   return (
     <AppShell>
       <div className="p-4 md:p-6 max-w-3xl">
-        <Link to="/requests" className="text-sm text-muted-foreground inline-flex items-center gap-1 hover:text-primary"><ChevronLeft className="h-4 w-4" /> Back</Link>
+        <Link to="/orders" className="text-sm text-muted-foreground inline-flex items-center gap-1 hover:text-primary"><ChevronLeft className="h-4 w-4" /> Back</Link>
 
         <div className="mt-3 rounded-2xl border bg-card p-5 shadow-card">
           <div className="flex items-center justify-between flex-wrap gap-2">

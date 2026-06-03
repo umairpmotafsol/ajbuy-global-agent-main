@@ -147,7 +147,7 @@ function ProductDetail() {
               >
                 {added ? <><Check className="h-4 w-4" /> Added to cart!</> : <><ShoppingCart className="h-4 w-4" /> Add to Cart</>}
               </button>
-              <Link to="/requests" className="w-full rounded-full border-2 border-foreground/20 text-foreground py-2.5 text-sm font-medium text-center hover:bg-muted inline-block">Request to Buy</Link>
+              <Link to="/orders" className="w-full rounded-full border-2 border-foreground/20 text-foreground py-2.5 text-sm font-medium text-center hover:bg-muted inline-block">Request to Buy</Link>
             </div>
             <div className="mt-2 flex gap-2">
               <button

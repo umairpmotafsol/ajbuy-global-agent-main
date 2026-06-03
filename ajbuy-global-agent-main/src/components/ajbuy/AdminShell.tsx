@@ -1,14 +1,12 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { LayoutDashboard, ShoppingCart, FileText, Quote, Warehouse, Users, DollarSign, Settings } from "lucide-react";
+import { LayoutDashboard, ShoppingCart, Warehouse, Users, DollarSign, Settings } from "lucide-react";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
 import { ReactNode } from "react";
 
 const items = [
   { to: "/admin", label: "Overview", icon: LayoutDashboard, exact: true },
-  { to: "/admin/requests", label: "Purchase Requests", icon: FileText },
   { to: "/admin/orders", label: "Orders", icon: ShoppingCart },
-  { to: "/admin/quotations", label: "Quotations", icon: Quote },
   { to: "/admin/warehouse", label: "Warehouse", icon: Warehouse },
   { to: "/admin/users", label: "Users", icon: Users },
   { to: "/admin/finance", label: "Finance", icon: DollarSign },
