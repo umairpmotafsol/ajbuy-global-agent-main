@@ -3,6 +3,7 @@ import { Logo } from "@/components/ajbuy/Logo";
 import { ThemeToggle } from "@/components/ajbuy/ThemeToggle";
 import { SearchBar } from "@/components/ajbuy/SearchBar";
 import { NavSearchBar } from "@/components/ajbuy/NavSearchBar";
+import { CategoriesCarousel } from "@/components/ajbuy/CategoriesCarousel";
 import { categories, featuredProducts, howItWorks, testimonials } from "@/lib/mock-data";
 import { ArrowRight, Star, Globe, ShieldCheck, Sparkles, Truck, Heart } from "lucide-react";
 import { useState } from "react";
@@ -220,22 +221,16 @@ function Landing() {
             </Link>
           </div>
 
-          {/* Category chips */}
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-8 gap-2 md:gap-3">
-            {categories.map((c) => (
-              <Link
-                key={c.name}
-                to="/search"
-                search={{ category: c.name }}
-                className="group relative rounded-2xl bg-card ring-soft p-3 md:p-4 flex flex-col items-center gap-1.5 hover:-translate-y-0.5 hover:shadow-card-hover transition-all overflow-hidden text-center"
-              >
-                {c.popular && (
-                  <span className="absolute top-1.5 right-1.5 text-[9px] uppercase font-bold bg-primary text-primary-foreground rounded-full px-1.5 py-0.5">Hot</span>
-                )}
-                <div className="text-xl md:text-2xl">{c.icon}</div>
-                <div className="font-display font-bold text-xs md:text-sm leading-tight">{c.name}</div>
-              </Link>
-            ))}
+          {/* Categories Carousel */}
+          <div className="px-12">
+            <CategoriesCarousel
+              items={categories.map((c) => ({
+                name: c.name,
+                emoji: c.icon,
+                image: (c as any).image,
+                highlight: c.popular,
+              }))}
+            />
           </div>
 
           {/* Featured products */}

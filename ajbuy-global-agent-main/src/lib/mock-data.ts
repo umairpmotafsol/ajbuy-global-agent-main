@@ -9,6 +9,7 @@ export type SearchProduct = {
   platform: "Taobao" | "1688";
   category: string;
   location: string;
+  image?: string;
 };
 
 export const allProducts: SearchProduct[] = [
@@ -47,14 +48,14 @@ export const user = {
 };
 
 export const categories = [
-  { name: "Electronics", icon: "📱", popular: true },
-  { name: "Clothing", icon: "👕", popular: true },
-  { name: "Shoes", icon: "👟", popular: false },
-  { name: "Bags", icon: "👜", popular: true },
-  { name: "Home Decor", icon: "🏠", popular: false },
-  { name: "Beauty", icon: "💄", popular: false },
-  { name: "Toys", icon: "🧸", popular: false },
-  { name: "Sports", icon: "⚽", popular: false },
+  { name: "Electronics", icon: "🔌", image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=600&fit=crop&q=80", popular: true },
+  { name: "Clothing", icon: "👗", image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=600&fit=crop&q=80", popular: true },
+  { name: "Shoes", icon: "👞", image: "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=600&h=600&fit=crop&q=80", popular: false },
+  { name: "Bags", icon: "💼", image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&h=600&fit=crop&q=80", popular: true },
+  { name: "Home Decor", icon: "🛋️", image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&h=600&fit=crop&q=80", popular: false },
+  { name: "Beauty", icon: "💅", image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=600&h=600&fit=crop&q=80", popular: false },
+  { name: "Toys", icon: "🎮", image: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=600&h=600&fit=crop&q=80", popular: false },
+  { name: "Sports", icon: "🏃", image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&h=600&fit=crop&q=80", popular: false },
 ];
 
 export type FeaturedProduct = {
