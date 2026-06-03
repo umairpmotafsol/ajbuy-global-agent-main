@@ -15,6 +15,7 @@ function Shipping() {
   const [insurance, setInsurance] = useState(true);
   const [fragile, setFragile] = useState(false);
   const [selectedServices, setSelectedServices] = useState<ServiceId[]>([]);
+  const [serviceRemarks, setServiceRemarks] = useState<Record<string, string>>({});
   const selected = shippingMethods.find((m) => m.name === method)!;
   const total = selected.price + (insurance ? 2.5 : 0) + (fragile ? 1 : 0);
 
@@ -85,7 +86,13 @@ function Shipping() {
             </div>
 
             {/* Value-Added Services */}
-            <ValueAddedServices selectedServices={selectedServices} onSelectionChange={setSelectedServices} type="parcel" />
+            <ValueAddedServices
+              selectedServices={selectedServices}
+              onSelectionChange={setSelectedServices}
+              remarks={serviceRemarks}
+              onRemarksChange={setServiceRemarks}
+              type="parcel"
+            />
           </div>
 
           {/* Summary */}

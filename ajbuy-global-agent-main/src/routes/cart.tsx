@@ -13,6 +13,7 @@ function CartPage() {
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [tab, setTab] = useState<"all" | "instock">("all");
   const [selectedServices, setSelectedServices] = useState<ServiceId[]>([]);
+  const [serviceRemarks, setServiceRemarks] = useState<Record<string, string>>({});
 
   const itemKey = (id: string, color: string, size: string) => `${id}-${color}-${size}`;
 
@@ -191,7 +192,13 @@ function CartPage() {
             </div>
 
             {/* Value-Added Services */}
-            <ValueAddedServices selectedServices={selectedServices} onSelectionChange={setSelectedServices} type="product" />
+            <ValueAddedServices
+              selectedServices={selectedServices}
+              onSelectionChange={setSelectedServices}
+              remarks={serviceRemarks}
+              onRemarksChange={setServiceRemarks}
+              type="product"
+            />
 
             {/* Bottom bar */}
             <div className="sticky bottom-20 lg:bottom-0 rounded-2xl border bg-card shadow-card-hover px-5 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">

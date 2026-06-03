@@ -170,10 +170,13 @@ const categoryLabels: Record<string, string> = {
 type Props = {
   selectedServices: ServiceId[];
   onSelectionChange: (services: ServiceId[]) => void;
+  remarks?: Record<string, string>;
+  onRemarksChange?: (remarks: Record<string, string>) => void;
   type?: "product" | "parcel";
 };
 
-export function ValueAddedServices({ selectedServices, onSelectionChange, type = "parcel" }: Readonly<Props>) {
+export function ValueAddedServices({ selectedServices, onSelectionChange, remarks, onRemarksChange, type = "parcel" }: Readonly<Props>) {
+  const safeRemarks = remarks || {};
   const productCategories = ["garment", "photo-video", "product-packaging"];
   const parcelCategories = ["parcel-packaging", "inspection", "customized"];
   const allowedCategories = type === "product" ? productCategories : parcelCategories;
@@ -197,6 +200,12 @@ export function ValueAddedServices({ selectedServices, onSelectionChange, type =
       ? selectedServices.filter((id) => id !== serviceId)
       : [...selectedServices, serviceId];
     onSelectionChange(newSelected);
+  };
+
+  const handleRemarkChange = (serviceId: ServiceId, value: string) => {
+    if (onRemarksChange) {
+      onRemarksChange({ ...remarks, [serviceId]: value });
+    }
   };
 
   const categories = Array.from(new Set(services.filter((s) => allowedCategories.includes(s.category)).map((s) => s.category)));
@@ -263,6 +272,31 @@ export function ValueAddedServices({ selectedServices, onSelectionChange, type =
           );
         })}
       </div>
+
+      {/* Remarks section */}
+      {selectedServices.length > 0 && (
+        <div className="px-5 py-4 bg-muted/20 space-y-3 border-t">
+          <p className="text-sm font-medium">Service Instructions</p>
+          {selectedServices.map((serviceId) => {
+            const service = services.find((s) => s.id === serviceId);
+            if (!service) return null;
+            return (
+              <div key={serviceId} className="space-y-1.5">
+                <label className="text-xs font-medium text-muted-foreground">
+                  {service.name} <span className="text-muted-foreground/60">(Optional)</span>
+                </label>
+                <textarea
+                  value={safeRemarks[serviceId] ?? ""}
+                  onChange={(e) => handleRemarkChange(serviceId, e.target.value)}
+                  placeholder="Enter any specific instructions or details for this service..."
+                  className="w-full px-3 py-2 text-sm rounded-lg border border-border bg-background focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all resize-none"
+                  rows={2}
+                />
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
