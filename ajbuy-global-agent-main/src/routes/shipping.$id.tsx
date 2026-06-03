@@ -1,5 +1,6 @@
 import { createFileRoute, Link, useSearch } from "@tanstack/react-router";
 import { AppShell } from "@/components/ajbuy/AppShell";
+import { ValueAddedServices, type ServiceId } from "@/components/ajbuy/ValueAddedServices";
 import { shippingMethods } from "@/lib/mock-data";
 import { useState } from "react";
 import { ChevronLeft, Info, MapPin } from "lucide-react";
@@ -13,6 +14,7 @@ function Shipping() {
   const [method, setMethod] = useState(shippingMethods[1].name);
   const [insurance, setInsurance] = useState(true);
   const [fragile, setFragile] = useState(false);
+  const [selectedServices, setSelectedServices] = useState<ServiceId[]>([]);
   const selected = shippingMethods.find((m) => m.name === method)!;
   const total = selected.price + (insurance ? 2.5 : 0) + (fragile ? 1 : 0);
 
@@ -81,6 +83,9 @@ function Shipping() {
                 </div>
               </div>
             </div>
+
+            {/* Value-Added Services */}
+            <ValueAddedServices selectedServices={selectedServices} onSelectionChange={setSelectedServices} type="parcel" />
           </div>
 
           {/* Summary */}

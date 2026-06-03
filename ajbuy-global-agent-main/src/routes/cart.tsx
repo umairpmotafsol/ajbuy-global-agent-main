@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AppShell } from "@/components/ajbuy/AppShell";
+import { ValueAddedServices, type ServiceId } from "@/components/ajbuy/ValueAddedServices";
 import { useCart } from "@/context/CartContext";
 import { useState } from "react";
 import { Minus, Plus, Pencil, Trash2, ShoppingBag } from "lucide-react";
@@ -11,6 +12,7 @@ function CartPage() {
   const { items, removeItem, updateQty, clearCart } = useCart();
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [tab, setTab] = useState<"all" | "instock">("all");
+  const [selectedServices, setSelectedServices] = useState<ServiceId[]>([]);
 
   const itemKey = (id: string, color: string, size: string) => `${id}-${color}-${size}`;
 
@@ -187,6 +189,9 @@ function CartPage() {
                 </div>
               ))}
             </div>
+
+            {/* Value-Added Services */}
+            <ValueAddedServices selectedServices={selectedServices} onSelectionChange={setSelectedServices} type="product" />
 
             {/* Bottom bar */}
             <div className="sticky bottom-20 lg:bottom-0 rounded-2xl border bg-card shadow-card-hover px-5 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
