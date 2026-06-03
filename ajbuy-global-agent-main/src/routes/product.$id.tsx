@@ -163,7 +163,7 @@ function ProductDetail() {
                 }}
                 className="w-full rounded-full border-2 border-foreground/20 text-foreground py-2.5 text-sm font-medium text-center hover:bg-muted"
               >
-                Request to Buy
+                Proceed to buy
               </button>
             </div>
             <div className="mt-2 flex gap-2">

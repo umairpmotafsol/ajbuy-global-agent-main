@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { AppShell } from "@/components/ajbuy/AppShell";
 import { StatusBadge } from "@/components/ajbuy/StatusBadge";
 import { ProductPlaceholder } from "@/components/ajbuy/ProductPlaceholder";
-import { ChevronRight, Filter, ArrowUpDown, Search as SearchIcon } from "lucide-react";
+import { ChevronRight, Filter, ArrowUpDown, Search as SearchIcon, CreditCard } from "lucide-react";
 import { useState } from "react";
 
 export const Route = createFileRoute("/orders/")({ component: OrdersList });
@@ -99,27 +99,37 @@ function OrdersList() {
             <div className="p-12 text-center text-sm text-muted-foreground">No orders in this status yet.</div>
           ) : (
             filtered.map((order) => (
-              <Link
+              <div
                 key={order.id}
-                to="/orders/$id"
-                params={{ id: order.id }}
                 className="flex items-center gap-3 p-4 hover:bg-muted/40 transition-colors"
               >
-                <ProductPlaceholder className="h-14 w-14 shrink-0" />
-                <div className="min-w-0 flex-1">
-                  <div className="font-medium truncate">{order.title}</div>
-                  <div className="text-xs text-muted-foreground">
-                    {order.id} · Qty {order.qty} · {order.date}
+                <Link
+                  to="/orders/$id"
+                  params={{ id: order.id }}
+                  className="flex items-center gap-3 flex-1 min-w-0"
+                >
+                  <ProductPlaceholder className="h-14 w-14 shrink-0" />
+                  <div className="min-w-0 flex-1">
+                    <div className="font-medium truncate">{order.title}</div>
+                    <div className="text-xs text-muted-foreground">
+                      {order.id} · Qty {order.qty} · {order.date}
+                    </div>
                   </div>
-                </div>
-                <div className="text-right shrink-0">
+                </Link>
+                <div className="text-right shrink-0 flex flex-col items-end gap-2">
                   <div className="text-[10px] font-semibold px-2.5 py-1 rounded-full bg-primary/10 text-primary whitespace-nowrap">
                     {order.status}
                   </div>
-                  {order.price && <div className="text-sm mt-1 font-medium">${order.price.toFixed(2)}</div>}
+                  {order.price && <div className="text-sm font-medium">${order.price.toFixed(2)}</div>}
                 </div>
-                <ChevronRight className="h-4 w-4 text-muted-foreground shrink-0" />
-              </Link>
+                {order.status === "Payment pending" ? (
+                  <button className="rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:bg-primary-deep transition-colors inline-flex items-center gap-2 whitespace-nowrap shrink-0">
+                    <CreditCard className="h-4 w-4" /> Pay now
+                  </button>
+                ) : (
+                  <ChevronRight className="h-4 w-4 text-muted-foreground shrink-0" />
+                )}
+              </div>
             ))
           )}
         </div>

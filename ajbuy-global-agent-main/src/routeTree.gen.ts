@@ -25,21 +25,17 @@ import { Route as CartRouteImport } from './routes/cart'
 import { Route as AffiliateRouteImport } from './routes/affiliate'
 import { Route as AccountRouteImport } from './routes/account'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as RequestsIndexRouteImport } from './routes/requests.index'
 import { Route as ParcelsIndexRouteImport } from './routes/parcels.index'
 import { Route as OrdersIndexRouteImport } from './routes/orders.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as TrackingIdRouteImport } from './routes/tracking.$id'
 import { Route as ShippingIdRouteImport } from './routes/shipping.$id'
-import { Route as RequestsIdRouteImport } from './routes/requests.$id'
 import { Route as ProductIdRouteImport } from './routes/product.$id'
 import { Route as ParcelsIdRouteImport } from './routes/parcels.$id'
 import { Route as OrdersIdRouteImport } from './routes/orders.$id'
 import { Route as AdminWarehouseRouteImport } from './routes/admin.warehouse'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
-import { Route as AdminRequestsRouteImport } from './routes/admin.requests'
-import { Route as AdminQuotationsRouteImport } from './routes/admin.quotations'
 import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
 import { Route as AdminFinanceRouteImport } from './routes/admin.finance'
 import { Route as WarehouseIdQcRouteImport } from './routes/warehouse.$id.qc'
@@ -125,11 +121,6 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const RequestsIndexRoute = RequestsIndexRouteImport.update({
-  id: '/requests/',
-  path: '/requests/',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ParcelsIndexRoute = ParcelsIndexRouteImport.update({
   id: '/parcels/',
   path: '/parcels/',
@@ -153,11 +144,6 @@ const TrackingIdRoute = TrackingIdRouteImport.update({
 const ShippingIdRoute = ShippingIdRouteImport.update({
   id: '/shipping/$id',
   path: '/shipping/$id',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RequestsIdRoute = RequestsIdRouteImport.update({
-  id: '/requests/$id',
-  path: '/requests/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductIdRoute = ProductIdRouteImport.update({
@@ -188,16 +174,6 @@ const AdminUsersRoute = AdminUsersRouteImport.update({
 const AdminSettingsRoute = AdminSettingsRouteImport.update({
   id: '/admin/settings',
   path: '/admin/settings',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminRequestsRoute = AdminRequestsRouteImport.update({
-  id: '/admin/requests',
-  path: '/admin/requests',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminQuotationsRoute = AdminQuotationsRouteImport.update({
-  id: '/admin/quotations',
-  path: '/admin/quotations',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminOrdersRoute = AdminOrdersRouteImport.update({
@@ -240,21 +216,17 @@ export interface FileRoutesByFullPath {
   '/warehouse': typeof WarehouseRouteWithChildren
   '/admin/finance': typeof AdminFinanceRoute
   '/admin/orders': typeof AdminOrdersRouteWithChildren
-  '/admin/quotations': typeof AdminQuotationsRoute
-  '/admin/requests': typeof AdminRequestsRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/admin/warehouse': typeof AdminWarehouseRoute
   '/orders/$id': typeof OrdersIdRoute
   '/parcels/$id': typeof ParcelsIdRoute
   '/product/$id': typeof ProductIdRoute
-  '/requests/$id': typeof RequestsIdRoute
   '/shipping/$id': typeof ShippingIdRoute
   '/tracking/$id': typeof TrackingIdRoute
   '/admin/': typeof AdminIndexRoute
   '/orders/': typeof OrdersIndexRoute
   '/parcels/': typeof ParcelsIndexRoute
-  '/requests/': typeof RequestsIndexRoute
   '/admin/orders/$id': typeof AdminOrdersIdRoute
   '/warehouse/$id/qc': typeof WarehouseIdQcRoute
 }
@@ -277,21 +249,17 @@ export interface FileRoutesByTo {
   '/warehouse': typeof WarehouseRouteWithChildren
   '/admin/finance': typeof AdminFinanceRoute
   '/admin/orders': typeof AdminOrdersRouteWithChildren
-  '/admin/quotations': typeof AdminQuotationsRoute
-  '/admin/requests': typeof AdminRequestsRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/admin/warehouse': typeof AdminWarehouseRoute
   '/orders/$id': typeof OrdersIdRoute
   '/parcels/$id': typeof ParcelsIdRoute
   '/product/$id': typeof ProductIdRoute
-  '/requests/$id': typeof RequestsIdRoute
   '/shipping/$id': typeof ShippingIdRoute
   '/tracking/$id': typeof TrackingIdRoute
   '/admin': typeof AdminIndexRoute
   '/orders': typeof OrdersIndexRoute
   '/parcels': typeof ParcelsIndexRoute
-  '/requests': typeof RequestsIndexRoute
   '/admin/orders/$id': typeof AdminOrdersIdRoute
   '/warehouse/$id/qc': typeof WarehouseIdQcRoute
 }
@@ -315,21 +283,17 @@ export interface FileRoutesById {
   '/warehouse': typeof WarehouseRouteWithChildren
   '/admin/finance': typeof AdminFinanceRoute
   '/admin/orders': typeof AdminOrdersRouteWithChildren
-  '/admin/quotations': typeof AdminQuotationsRoute
-  '/admin/requests': typeof AdminRequestsRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/admin/warehouse': typeof AdminWarehouseRoute
   '/orders/$id': typeof OrdersIdRoute
   '/parcels/$id': typeof ParcelsIdRoute
   '/product/$id': typeof ProductIdRoute
-  '/requests/$id': typeof RequestsIdRoute
   '/shipping/$id': typeof ShippingIdRoute
   '/tracking/$id': typeof TrackingIdRoute
   '/admin/': typeof AdminIndexRoute
   '/orders/': typeof OrdersIndexRoute
   '/parcels/': typeof ParcelsIndexRoute
-  '/requests/': typeof RequestsIndexRoute
   '/admin/orders/$id': typeof AdminOrdersIdRoute
   '/warehouse/$id/qc': typeof WarehouseIdQcRoute
 }
@@ -354,21 +318,17 @@ export interface FileRouteTypes {
     | '/warehouse'
     | '/admin/finance'
     | '/admin/orders'
-    | '/admin/quotations'
-    | '/admin/requests'
     | '/admin/settings'
     | '/admin/users'
     | '/admin/warehouse'
     | '/orders/$id'
     | '/parcels/$id'
     | '/product/$id'
-    | '/requests/$id'
     | '/shipping/$id'
     | '/tracking/$id'
     | '/admin/'
     | '/orders/'
     | '/parcels/'
-    | '/requests/'
     | '/admin/orders/$id'
     | '/warehouse/$id/qc'
   fileRoutesByTo: FileRoutesByTo
@@ -391,21 +351,17 @@ export interface FileRouteTypes {
     | '/warehouse'
     | '/admin/finance'
     | '/admin/orders'
-    | '/admin/quotations'
-    | '/admin/requests'
     | '/admin/settings'
     | '/admin/users'
     | '/admin/warehouse'
     | '/orders/$id'
     | '/parcels/$id'
     | '/product/$id'
-    | '/requests/$id'
     | '/shipping/$id'
     | '/tracking/$id'
     | '/admin'
     | '/orders'
     | '/parcels'
-    | '/requests'
     | '/admin/orders/$id'
     | '/warehouse/$id/qc'
   id:
@@ -428,21 +384,17 @@ export interface FileRouteTypes {
     | '/warehouse'
     | '/admin/finance'
     | '/admin/orders'
-    | '/admin/quotations'
-    | '/admin/requests'
     | '/admin/settings'
     | '/admin/users'
     | '/admin/warehouse'
     | '/orders/$id'
     | '/parcels/$id'
     | '/product/$id'
-    | '/requests/$id'
     | '/shipping/$id'
     | '/tracking/$id'
     | '/admin/'
     | '/orders/'
     | '/parcels/'
-    | '/requests/'
     | '/admin/orders/$id'
     | '/warehouse/$id/qc'
   fileRoutesById: FileRoutesById
@@ -466,21 +418,17 @@ export interface RootRouteChildren {
   WarehouseRoute: typeof WarehouseRouteWithChildren
   AdminFinanceRoute: typeof AdminFinanceRoute
   AdminOrdersRoute: typeof AdminOrdersRouteWithChildren
-  AdminQuotationsRoute: typeof AdminQuotationsRoute
-  AdminRequestsRoute: typeof AdminRequestsRoute
   AdminSettingsRoute: typeof AdminSettingsRoute
   AdminUsersRoute: typeof AdminUsersRoute
   AdminWarehouseRoute: typeof AdminWarehouseRoute
   OrdersIdRoute: typeof OrdersIdRoute
   ParcelsIdRoute: typeof ParcelsIdRoute
   ProductIdRoute: typeof ProductIdRoute
-  RequestsIdRoute: typeof RequestsIdRoute
   ShippingIdRoute: typeof ShippingIdRoute
   TrackingIdRoute: typeof TrackingIdRoute
   AdminIndexRoute: typeof AdminIndexRoute
   OrdersIndexRoute: typeof OrdersIndexRoute
   ParcelsIndexRoute: typeof ParcelsIndexRoute
-  RequestsIndexRoute: typeof RequestsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -597,13 +545,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/requests/': {
-      id: '/requests/'
-      path: '/requests'
-      fullPath: '/requests/'
-      preLoaderRoute: typeof RequestsIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/parcels/': {
       id: '/parcels/'
       path: '/parcels'
@@ -637,13 +578,6 @@ declare module '@tanstack/react-router' {
       path: '/shipping/$id'
       fullPath: '/shipping/$id'
       preLoaderRoute: typeof ShippingIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/requests/$id': {
-      id: '/requests/$id'
-      path: '/requests/$id'
-      fullPath: '/requests/$id'
-      preLoaderRoute: typeof RequestsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/product/$id': {
@@ -686,20 +620,6 @@ declare module '@tanstack/react-router' {
       path: '/admin/settings'
       fullPath: '/admin/settings'
       preLoaderRoute: typeof AdminSettingsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/requests': {
-      id: '/admin/requests'
-      path: '/admin/requests'
-      fullPath: '/admin/requests'
-      preLoaderRoute: typeof AdminRequestsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/quotations': {
-      id: '/admin/quotations'
-      path: '/admin/quotations'
-      fullPath: '/admin/quotations'
-      preLoaderRoute: typeof AdminQuotationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/orders': {
@@ -776,21 +696,17 @@ const rootRouteChildren: RootRouteChildren = {
   WarehouseRoute: WarehouseRouteWithChildren,
   AdminFinanceRoute: AdminFinanceRoute,
   AdminOrdersRoute: AdminOrdersRouteWithChildren,
-  AdminQuotationsRoute: AdminQuotationsRoute,
-  AdminRequestsRoute: AdminRequestsRoute,
   AdminSettingsRoute: AdminSettingsRoute,
   AdminUsersRoute: AdminUsersRoute,
   AdminWarehouseRoute: AdminWarehouseRoute,
   OrdersIdRoute: OrdersIdRoute,
   ParcelsIdRoute: ParcelsIdRoute,
   ProductIdRoute: ProductIdRoute,
-  RequestsIdRoute: RequestsIdRoute,
   ShippingIdRoute: ShippingIdRoute,
   TrackingIdRoute: TrackingIdRoute,
   AdminIndexRoute: AdminIndexRoute,
   OrdersIndexRoute: OrdersIndexRoute,
   ParcelsIndexRoute: ParcelsIndexRoute,
-  RequestsIndexRoute: RequestsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

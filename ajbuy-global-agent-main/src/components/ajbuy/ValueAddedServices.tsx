@@ -154,7 +154,7 @@ const services: Service[] = [
     name: "Thread Trimming",
     description: "Remove excess threads from products.",
     price: "CN ¥2 / PCS",
-    category: "customized",
+    category: "inspection",
   },
 ];
 
@@ -164,7 +164,7 @@ const categoryLabels: Record<string, string> = {
   "product-packaging": "Product Packaging",
   "parcel-packaging": "Parcel Packaging",
   inspection: "Inspection & Testing",
-  customized: "Customized Services",
+  customized: "Shipping Experts",
 };
 
 type Props = {
@@ -177,8 +177,8 @@ type Props = {
 
 export function ValueAddedServices({ selectedServices, onSelectionChange, remarks, onRemarksChange, type = "parcel" }: Readonly<Props>) {
   const safeRemarks = remarks || {};
-  const productCategories = ["garment", "photo-video", "product-packaging"];
-  const parcelCategories = ["parcel-packaging", "inspection", "customized"];
+  const productCategories = ["garment", "photo-video", "product-packaging", "inspection"];
+  const parcelCategories = ["customized", "parcel-packaging"];
   const allowedCategories = type === "product" ? productCategories : parcelCategories;
 
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
@@ -208,7 +208,7 @@ export function ValueAddedServices({ selectedServices, onSelectionChange, remark
     }
   };
 
-  const categories = Array.from(new Set(services.filter((s) => allowedCategories.includes(s.category)).map((s) => s.category)));
+  const categories = allowedCategories.filter((cat) => services.some((s) => s.category === cat));
 
   return (
     <div className="rounded-2xl border bg-card shadow-card overflow-hidden">
