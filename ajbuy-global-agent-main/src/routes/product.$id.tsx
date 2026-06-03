@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { AppShell } from "@/components/ajbuy/AppShell";
 import { ProductPlaceholder } from "@/components/ajbuy/ProductPlaceholder";
 import { ChevronLeft, Star, Heart, Share2, Shield, Truck, RotateCcw, Minus, Plus, MapPin, ShoppingCart, Check } from "lucide-react";
@@ -29,6 +29,7 @@ const reviews = [
 
 function ProductDetail() {
   const { id } = Route.useParams();
+  const navigate = useNavigate();
   const { addItem } = useCart();
   const { addItem: addToWishlist, removeItem: removeFromWishlist, isWishlisted } = useWishlist();
   const product = allProducts.find((p) => p.id === id);
@@ -147,7 +148,23 @@ function ProductDetail() {
               >
                 {added ? <><Check className="h-4 w-4" /> Added to cart!</> : <><ShoppingCart className="h-4 w-4" /> Add to Cart</>}
               </button>
-              <Link to="/orders" className="w-full rounded-full border-2 border-foreground/20 text-foreground py-2.5 text-sm font-medium text-center hover:bg-muted inline-block">Request to Buy</Link>
+              <button
+                onClick={() => {
+                  addItem({
+                    id,
+                    title: product?.title ?? id,
+                    price: product?.price ?? 10.8,
+                    qty,
+                    color,
+                    size,
+                    emoji: product ? (categoryEmoji[product.category] ?? "📦") : "📦",
+                  });
+                  void navigate({ to: "/cart" });
+                }}
+                className="w-full rounded-full border-2 border-foreground/20 text-foreground py-2.5 text-sm font-medium text-center hover:bg-muted"
+              >
+                Request to Buy
+              </button>
             </div>
             <div className="mt-2 flex gap-2">
               <button
