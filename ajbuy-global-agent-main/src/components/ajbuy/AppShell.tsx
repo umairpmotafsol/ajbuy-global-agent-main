@@ -17,6 +17,7 @@ const navItems = [
 
 const sideExtras = [
   { to: "/account", label: "Account", icon: User },
+  { to: "/parcels", label: "Parcel", icon: Truck },
   { to: "/cart", label: "Cart", icon: ShoppingCart },
   { to: "/favorites", label: "Favorites", icon: Heart },
   { to: "/wallet", label: "Wallet", icon: Wallet },
