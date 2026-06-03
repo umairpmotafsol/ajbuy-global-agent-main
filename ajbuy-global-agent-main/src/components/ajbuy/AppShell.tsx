@@ -14,12 +14,12 @@ const navItems = [
   { to: "/orders", label: "Orders", icon: ListOrdered },
   { to: "/warehouse", label: "Warehouse", icon: Warehouse },
   { to: "/account", label: "Account", icon: User },
+  { to: "/parcels", label: "Parcel", icon: Truck },
 ];
 
 const sideExtras = [
   { to: "/cart", label: "Cart", icon: ShoppingCart },
   { to: "/favorites", label: "Favorites", icon: Heart },
-  { to: "/parcels", label: "Parcel", icon: Truck },
   { to: "/wallet", label: "Wallet", icon: Wallet },
   { to: "/affiliate", label: "Affiliate", icon: Gift },
   { to: "/support", label: "Support", icon: LifeBuoy },
